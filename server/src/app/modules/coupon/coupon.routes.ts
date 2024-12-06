@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/', auth('admin'), createCoupon);
 router.get('/', auth('admin'), getAllCoupons);
 router.get('/:couponId', auth('admin'), getCouponDetails);
-router.put('/:couponId', auth('admin'), updateCoupon);
+router.patch('/:couponId', auth('admin'), updateCoupon);
 router.delete('/:couponId', auth('admin'), deleteCoupon);
 
 export default router;

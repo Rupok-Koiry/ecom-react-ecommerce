@@ -16,7 +16,7 @@ const router = express.Router();
 router.post('/', auth('vendor'), createProduct);
 router.get('/', getAllProducts);
 router.get('/:productId', getProductDetails);
-router.put('/:productId', auth('vendor'), updateProduct);
+router.patch('/:productId', auth('vendor'), updateProduct);
 router.delete('/:productId', auth('vendor'), deleteProduct);
 router.post('/:productId/duplicate', auth('vendor'), duplicateProduct);
 router.get('/:productId/reviews', getProductReviews);

@@ -1,26 +1,26 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateUser as updateUserApi } from "../../services/apiUsers";
+import { unfollowShop } from "../../services/apiUsers";
 import toast from "react-hot-toast";
 
-export function useUpdateUser() {
+export function useUnfollowShop() {
   const queryClient = useQueryClient();
 
   const {
-    mutate: updateUser,
-    isPending: isUpdating,
+    mutate: unfollow,
+    isPending,
     error,
   } = useMutation({
-    mutationFn: updateUserApi,
+    mutationFn: unfollowShop,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["users"],
+        queryKey: ["userProfile"],
       });
-      toast.success("User updated successfully");
+      toast.success("Shop unfollowed successfully");
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 
-  return { updateUser, isUpdating, error };
+  return { unfollow, isPending, error };
 }

@@ -1,29 +1,26 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { returnCar as returnCarApi } from "../../services/apiCars";
+import { followShop } from "../../services/apiUsers";
 import toast from "react-hot-toast";
 
-export function useReturnCar() {
+export function useFollowShop() {
   const queryClient = useQueryClient();
 
   const {
-    mutate: returnCar,
+    mutate: follow,
     isPending,
     error,
   } = useMutation({
-    mutationFn: returnCarApi,
+    mutationFn: followShop,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["cars"],
+        queryKey: ["userProfile"],
       });
-      queryClient.invalidateQueries({
-        queryKey: ["bookings"],
-      });
-      toast.success("Car returned successfully");
+      toast.success("Shop followed successfully");
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 
-  return { returnCar, isPending, error };
+  return { follow, isPending, error };
 }

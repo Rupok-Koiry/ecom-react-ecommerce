@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import {
   createOne,
   deleteOne,
+  getAll,
   getOne,
   updateOne,
 } from '../../utils/handlerFactory';
@@ -13,6 +14,9 @@ import AppError from '../../errors/AppError';
 
 // Create a shop
 export const createShop = createOne(Shop);
+
+// Get all shops
+export const getAllShop = getAll(Shop);
 
 // Get shop details
 export const getShopDetails = getOne(Shop, 'owner');

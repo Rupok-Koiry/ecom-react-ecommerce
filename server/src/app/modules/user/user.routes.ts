@@ -13,11 +13,11 @@ const router = express.Router();
 
 // User Routes
 router.get('/profile', auth('user', 'vendor', 'admin'), getUserProfile);
-router.put('/profile', auth('user', 'vendor', 'admin'), updateUserProfile);
+router.patch('/profile', auth('user', 'vendor', 'admin'), updateUserProfile);
 router.post('/follow/:shopId', auth('user'), followShop);
 router.delete('/unfollow/:shopId', auth('user'), unfollowShop);
 router.get('/', auth('admin'), getAllUsers);
-router.put('/:userId/ban', auth('admin'), banUser);
+router.patch('/:userId/ban', auth('admin'), banUser);
 router.delete('/:userId', auth('admin'), deleteUser);
 
 export default router;

@@ -16,10 +16,7 @@ app.use(cookieParser());
 // Middleware for enabling Cross-Origin Resource Sharing (CORS) for specified origins
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',
-      'https://apollo-assignment-05-jup2.vercel.app',
-    ],
+    origin: ['http://localhost:5173'],
   }),
 );
 
