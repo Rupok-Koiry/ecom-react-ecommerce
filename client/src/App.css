@@ -1,0 +1,40 @@
+.hero {
+  background-image: linear-gradient(
+      rgba(24, 25, 26, 0.5),
+      rgba(24, 25, 26, 0.5)
+    ),
+    url("https://images.pexels.com/photos/235222/pexels-photo-235222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* Review.css */
+
+.custom-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.swiper-pagination-bullet {
+  background: var(--primary-grey) !important;
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary-orange) !important;
+}
+.swiper-button-prev {
+  left: 0;
+}
+.swiper-button-next {
+  right: 0;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 28px;
+}
