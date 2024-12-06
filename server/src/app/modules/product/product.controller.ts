@@ -16,10 +16,10 @@ import Review from '../review/review.model';
 export const createProduct = createOne(Product);
 
 // Controller for getting all products
-export const getAllProducts = getAll(Product, 'shop');
+export const getAllProducts = getAll(Product, 'shop category');
 
 // Controller for getting product details
-export const getProductDetails = getOne(Product, 'shop');
+export const getProductDetails = getOne(Product, 'shop category');
 
 // Controller for updating a product
 export const updateProduct = updateOne(Product);
@@ -59,8 +59,10 @@ export const getProductReviews = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { productId } = req.params;
 
-    const reviews = await Review.find({ product: productId });
-
+    const reviews = await Review.find({ product: productId }).populate(
+      'user',
+      'name',
+    );
     if (!reviews.length) {
       return next(
         new AppError(httpStatus.NOT_FOUND, 'No reviews found for this product'),

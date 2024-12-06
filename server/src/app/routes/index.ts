@@ -1,40 +1,54 @@
 import { Router } from 'express';
-// import { UserRoutes } from '../modules/user/user.route';
 import OrderRoutes from '../modules/order/order.routes';
 import CouponRoutes from '../modules/coupon/coupon.routes';
-// import { CarRoutes } from '../modules/car/car.route';
-// import { AuthRoutes } from '../modules/auth/auth.route';
-// import { BookingRoutes } from '../modules/shop/shop.routes';
-// import { PaymentRoutes } from '../modules/payment/payment.routes';
+import { AuthRoutes } from '../modules/auth/auth.route';
+import UserRoutes from '../modules/user/user.routes';
+import ShopRoutes from '../modules/shop/shop.routes';
+import ReviewRoutes from '../modules/review/review.routes';
+import TransactionRoutes from '../modules/transaction/transaction.routes';
+import ProductRoutes from '../modules/product/product.routes';
+import CategoryRoutes from '../modules/category/category.routes';
 
 const router = Router();
 
 // Define the routes for each module
 const moduleRoutes = [
   {
-    path: '/orders',
-    route: OrderRoutes,
+    path: '/auth',
+    route: AuthRoutes,
+  },
+  {
+    path: '/categories',
+    route: CategoryRoutes,
   },
   {
     path: '/coupons',
     route: CouponRoutes,
   },
-  // {
-  //   path: '/auth',
-  //   route: AuthRoutes,
-  // },
-  // {
-  //   path: '/cars',
-  //   route: CarRoutes,
-  // },
-  // {
-  //   path: '/bookings',
-  //   route: BookingRoutes,
-  // },
-  // {
-  //   path: '/payment',
-  //   route: PaymentRoutes,
-  // },
+  {
+    path: '/orders',
+    route: OrderRoutes,
+  },
+  {
+    path: '/products',
+    route: ProductRoutes,
+  },
+  {
+    path: '/reviews',
+    route: ReviewRoutes,
+  },
+  {
+    path: '/shops',
+    route: ShopRoutes,
+  },
+  {
+    path: '/transactions',
+    route: TransactionRoutes,
+  },
+  {
+    path: '/users',
+    route: UserRoutes,
+  },
 ];
 
 // Register each module route with the router

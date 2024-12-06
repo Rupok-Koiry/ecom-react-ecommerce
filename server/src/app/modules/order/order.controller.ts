@@ -34,7 +34,7 @@ export const placeOrder = catchAsync(
 export const getUserOrders = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const orders = await Order.find({ user: req.user.id }).populate(
-      'products.product',
+      'products.product shop',
     );
 
     if (!orders || orders.length === 0) {
@@ -56,9 +56,8 @@ export const getOrderDetails = catchAsync(
     const { orderId } = req.params;
 
     const order = await Order.findById(orderId)
-      .populate('products.product')
-      .populate('user', 'name email')
-      .populate('shop', 'name owner');
+      .populate('products.product shop')
+      .populate('user', 'name email');
 
     if (!order) {
       return next(new AppError(404, 'Order not found'));
@@ -69,7 +68,7 @@ export const getOrderDetails = catchAsync(
       (req.user.role === 'user' && order.user._id.toString() !== req.user.id) ||
       (req.user.role === 'vendor' &&
         //@ts-expect-error eslint-disable-next-line
-        order.shop.owner.toString() !== req.user.id)
+        order.shop.vendor.toString() !== req.user.id)
     ) {
       return next(
         new AppError(403, 'You are not authorized to view this order'),

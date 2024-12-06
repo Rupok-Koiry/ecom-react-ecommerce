@@ -1,14 +1,4 @@
-import Coupon from './transaction.model';
-import {
-  createOne,
-  getAll,
-  getOne,
-  updateOne,
-  deleteOne,
-} from '../../utils/handlerFactory';
+import { getAll } from '../../utils/handlerFactory';
+import Transaction from './transaction.model';
 
-export const createCoupon = createOne(Coupon);
-export const getAllCoupons = getAll(Coupon);
-export const getCouponDetails = getOne(Coupon);
-export const updateCoupon = updateOne(Coupon);
-export const deleteCoupon = deleteOne(Coupon);
+export const getAllTransactions = getAll(Transaction);

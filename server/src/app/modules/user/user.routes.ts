@@ -19,4 +19,5 @@ router.delete('/unfollow/:shopId', auth('user'), unfollowShop);
 router.get('/', auth('admin'), getAllUsers);
 router.put('/:userId/ban', auth('admin'), banUser);
 router.delete('/:userId', auth('admin'), deleteUser);
-export const UserRoutes = router;
+
+export default router;
