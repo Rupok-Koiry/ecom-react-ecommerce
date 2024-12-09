@@ -14,10 +14,10 @@ import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
 
 const STATUS_COLORS: Record<BookingStatusTypes, string> = {
-  pending: "bg-primary-orange",
-  approved: "bg-primary-green",
-  cancelled: "bg-primary-red",
-  completed: "bg-primary-blue",
+  pending: "bg-primary-brand",
+  approved: "bg-success-color",
+  cancelled: "bg-error-color",
+  completed: "bg-info-color",
 };
 
 type BookingTableProps = {
@@ -131,7 +131,7 @@ const BookingRow: React.FC<{
       {new Date(booking.startDate).toLocaleDateString()}
     </td>
 
-    <td className="px-6 py-4 whitespace-nowrap text-primary-green">
+    <td className="px-6 py-4 whitespace-nowrap text-success-color">
       ${booking.totalCost}
     </td>
     <td className="px-6 py-4 whitespace-nowrap">

@@ -174,11 +174,11 @@ const CarModal: React.FC<CarModalProps> = ({
                 <input
                   type="text"
                   {...register("name", { required: "Name is required" })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter car name"
                 />
                 {errors.name && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.name.message}
                   </p>
                 )}
@@ -190,11 +190,11 @@ const CarModal: React.FC<CarModalProps> = ({
                 <input
                   type="text"
                   {...register("pricePerHour")}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter price per hour"
                 />
                 {errors.pricePerHour && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.pricePerHour.message}
                   </p>
                 )}
@@ -207,12 +207,12 @@ const CarModal: React.FC<CarModalProps> = ({
                   {...register("description", {
                     required: "Description is required",
                   })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter car description"
                   rows={3}
                 />
                 {errors.description && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.description.message}
                   </p>
                 )}
@@ -225,11 +225,11 @@ const CarModal: React.FC<CarModalProps> = ({
                   <input
                     type="text"
                     {...register("color", { required: "Color is required" })}
-                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                     placeholder="Enter car color"
                   />
                   {errors.color && (
-                    <p className="text-primary-red text-sm">
+                    <p className="text-error-color text-sm">
                       {errors.color.message}
                     </p>
                   )}
@@ -241,11 +241,11 @@ const CarModal: React.FC<CarModalProps> = ({
                   <input
                     type="text"
                     {...register("type", { required: "Type is required" })}
-                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                     placeholder="Enter car type"
                   />
                   {errors.type && (
-                    <p className="text-primary-red text-sm">
+                    <p className="text-error-color text-sm">
                       {errors.type.message}
                     </p>
                   )}
@@ -257,13 +257,13 @@ const CarModal: React.FC<CarModalProps> = ({
                 </label>
                 <select
                   {...register("status", { required: "Status is required" })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                 >
                   <option value="available">Available</option>
                   <option value="unavailable">Unavailable</option>
                 </select>
                 {errors.status && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.status.message}
                   </p>
                 )}
@@ -275,7 +275,7 @@ const CarModal: React.FC<CarModalProps> = ({
                 <input
                   type="text"
                   {...register("features")}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter car features (e.g. GPS, Child Seat, Insurance)"
                 />
               </div>
@@ -307,11 +307,11 @@ const CarModal: React.FC<CarModalProps> = ({
                       {({ getRootProps, getInputProps }) => (
                         <div
                           {...getRootProps()}
-                          className="w-full px-8 py-3 border border-secondary-grey hover:border-primary-orange rounded-md cursor-pointer"
+                          className="w-full px-8 py-3 border border-secondary-grey hover:border-primary-brand rounded-md cursor-pointer"
                         >
                           <input {...getInputProps()} />
                           <div className="flex justify-center text-4xl">
-                            <IoMdCloudUpload className="text-primary-orange" />
+                            <IoMdCloudUpload className="text-primary-brand" />
                           </div>
                           <p className="text-secondary-text text-center">
                             Upload relevant images of the car
@@ -327,7 +327,7 @@ const CarModal: React.FC<CarModalProps> = ({
                   )}
                 />
                 {errors.images && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.images.message}
                   </p>
                 )}
@@ -341,7 +341,7 @@ const CarModal: React.FC<CarModalProps> = ({
                       />
                       <button
                         type="button"
-                        className="absolute top-0 right-0 bg-primary-red text-primary-white rounded-full p-1 hover:bg-red-700"
+                        className="absolute top-0 right-0 bg-error-color text-primary-white rounded-full p-1 hover:bg-red-700"
                         onClick={() => removeImage(index)}
                       >
                         <RxCross2 />

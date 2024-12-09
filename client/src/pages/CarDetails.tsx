@@ -66,7 +66,7 @@ const CarDetailsPage = () => {
         {/* Car Information */}
         <div className="text-primary-text mb-8">
           <h2 className="text-3xl font-semibold mb-4 flex items-center gap-2">
-            <FaCar className="text-primary-orange" /> {car.name}
+            <FaCar className="text-primary-brand" /> {car.name}
           </h2>
           <p className="text-lg mb-4 text-secondary-text">{car.description}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -79,15 +79,15 @@ const CarDetailsPage = () => {
               <span className="font-semibold">Type:</span> {car.type}
             </p>
             <p className="text-lg mb-2 flex items-center gap-2">
-              <FaDollarSign className=" text-primary-green" />{" "}
+              <FaDollarSign className=" text-success-color" />{" "}
               <span className="font-semibold">Price per Hour:</span> $
               {car.pricePerHour}
             </p>
             <p
               className={`text-lg font-semibold flex items-center uppercase ${
                 car.status === "available"
-                  ? "text-primary-green"
-                  : "text-primary-red"
+                  ? "text-success-color"
+                  : "text-error-color"
               }`}
             >
               {car.status === "available" ? (
@@ -103,13 +103,13 @@ const CarDetailsPage = () => {
         {/* Additional Options */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 flex items-center text-primary-text">
-            <FaShieldAlt className="mr-2 text-primary-orange" /> Additional
+            <FaShieldAlt className="mr-2 text-primary-brand" /> Additional
             Features
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {car.features.map((feature, index) => (
               <div className="flex items-center" key={index}>
-                <FaCheckCircle className="mr-2 text-primary-green" size={24} />
+                <FaCheckCircle className="mr-2 text-success-color" size={24} />
 
                 <p className="text-lg text-primary-text flex items-center capitalize">
                   {feature?.split("-")?.join(" ")}
@@ -122,7 +122,7 @@ const CarDetailsPage = () => {
         {/* Customer Reviews */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 flex items-center text-primary-text">
-            <FaStar className="mr-2 text-primary-orange" /> Customer Reviews
+            <FaStar className="mr-2 text-primary-brand" /> Customer Reviews
           </h2>
           <div className="space-y-6">
             {getRandomReviews().map((review, index) => (
@@ -145,13 +145,13 @@ const CarDetailsPage = () => {
                     {Array.from({ length: 5 }, (_, i) => {
                       if (i < Math.floor(review.rating)) {
                         return (
-                          <FaStar key={i} className="text-primary-orange" />
+                          <FaStar key={i} className="text-primary-brand" />
                         );
                       } else if (i < review.rating) {
                         return (
                           <FaStarHalfAlt
                             key={i}
-                            className="text-primary-orange"
+                            className="text-primary-brand"
                           />
                         );
                       } else {

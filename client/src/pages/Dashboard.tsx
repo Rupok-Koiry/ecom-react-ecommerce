@@ -70,15 +70,15 @@ const Dashboard = () => {
             <StatsCard
               title="Total Bookings"
               value={bookings?.length || 0}
-              textColor="text-primary-blue"
-              borderColor="border-primary-blue"
+              textColor="text-info-color"
+              borderColor="border-info-color"
               icon={<FaClipboardList size={30} />}
             />
             <StatsCard
               title="Available Cars"
               value={cars?.length || 0}
-              textColor="text-primary-green"
-              borderColor="border-primary-green"
+              textColor="text-success-color"
+              borderColor="border-success-color"
               icon={<FaCar size={30} />}
             />
             <StatsCard
@@ -94,8 +94,8 @@ const Dashboard = () => {
                     0
                   ) || 0
               }`}
-              textColor="text-primary-orange"
-              borderColor="border-primary-orange"
+              textColor="text-primary-brand"
+              borderColor="border-primary-brand"
               icon={<FaMoneyBillWave size={30} />}
             />
             <StatsCard
@@ -105,8 +105,8 @@ const Dashboard = () => {
                   (booking: BookingTypes) => booking.status === "pending"
                 ).length || 0
               }
-              textColor="text-primary-red"
-              borderColor="border-primary-red"
+              textColor="text-error-color"
+              borderColor="border-error-color"
               icon={<FaHourglassHalf size={30} />}
             />
           </section>
@@ -127,10 +127,10 @@ const Dashboard = () => {
               <input
                 type="text"
                 {...register("name")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
               />
               {errors.name && (
-                <p className="text-primary-red text-xs">
+                <p className="text-error-color text-xs">
                   {errors.name.message}
                 </p>
               )}
@@ -142,10 +142,10 @@ const Dashboard = () => {
               <input
                 type="email"
                 {...register("email")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
               />
               {errors.email && (
-                <p className="text-primary-red text-xs">
+                <p className="text-error-color text-xs">
                   {errors.email.message}
                 </p>
               )}
@@ -158,10 +158,10 @@ const Dashboard = () => {
               <input
                 type="tel"
                 {...register("phone")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
               />
               {errors.phone && (
-                <p className="text-primary-red text-xs">
+                <p className="text-error-color text-xs">
                   {errors.phone.message}
                 </p>
               )}
@@ -173,10 +173,10 @@ const Dashboard = () => {
               <input
                 type="text"
                 {...register("address")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
               />
               {errors.address && (
-                <p className="text-primary-red text-xs">
+                <p className="text-error-color text-xs">
                   {errors.address.message}
                 </p>
               )}

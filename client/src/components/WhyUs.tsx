@@ -4,7 +4,7 @@ const WhyUs = () => {
   return (
     <section className="md:py-10 py-12 container mx-auto px-5">
       <h2 className="text-3xl text-primary-text text-center font-semibold mb-4">
-        Why Choose Drive <span className="text-primary-orange">Now</span>?
+        Why Choose Drive <span className="text-primary-brand">Now</span>?
       </h2>
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4 lg:w-1/2">
@@ -61,7 +61,7 @@ const AccordionItem = ({ header, text }: AccordionItemProps) => {
         <div className="w-full">
           <h4 className="mt-1 text-lg font-bold text-primary-text">{header}</h4>
         </div>
-        <div className="flex h-6 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary-orange">
+        <div className="flex h-6 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary-brand">
           <svg
             className={`fill-primary stroke-primary transition duration-300 ease-in text-white ${
               active ? "rotate-180" : ""

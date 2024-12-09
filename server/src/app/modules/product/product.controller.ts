@@ -56,18 +56,13 @@ export const duplicateProduct = catchAsync(
 
 // Controller for getting reviews for a specific product
 export const getProductReviews = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const { productId } = req.params;
 
     const reviews = await Review.find({ product: productId }).populate(
       'user',
-      'name',
+      'name profilePic',
     );
-    if (!reviews.length) {
-      return next(
-        new AppError(httpStatus.NOT_FOUND, 'No reviews found for this product'),
-      );
-    }
 
     res.status(httpStatus.OK).json({
       success: true,

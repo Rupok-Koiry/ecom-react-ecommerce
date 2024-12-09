@@ -34,13 +34,13 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const baseClassName =
-    "rounded-xl px-5 py-2.5 transition-all duration-300 border border-transparent font-medium justify-center flex items-center focus:outline-none focus:ring-2 focus:ring-primary-orange focus:ring-opacity-50";
+    "rounded-xl px-5 py-2.5 transition-all duration-300 border border-transparent font-medium justify-center flex items-center focus:outline-none focus:ring-2 focus:ring-primary-brand focus:ring-opacity-50";
 
   const outlineClassName = outline
     ? `${
         disabled
           ? "border-primary-grey opacity-85  bg-secondary-background"
-          : "border-primary-orange bg-transparent hover:bg-primary-orange hover:text-primary-background text-primary-orange"
+          : "border-primary-brand bg-transparent hover:bg-primary-brand hover:text-primary-background text-primary-brand"
       }`
     : "";
 
@@ -48,7 +48,7 @@ const Button: React.FC<ButtonProps> = ({
     ? `${
         disabled
           ? "bg-secondary-background opacity-85"
-          : "bg-primary-orange text-primary-background hover:bg-transparent hover:border-primary-orange hover:text-primary-orange"
+          : "bg-primary-brand text-primary-background hover:bg-transparent hover:border-primary-brand hover:text-primary-brand"
       }`
     : "";
 

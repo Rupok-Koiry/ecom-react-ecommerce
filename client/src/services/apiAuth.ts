@@ -30,3 +30,22 @@ export async function logout() {
   Cookies.remove("token");
   return response.data;
 }
+export async function forgotPassword(email: string) {
+  const response = await handleApiRequest(
+    api.post("/auth/forgot-password", { email })
+  );
+  return response.data.data;
+}
+
+export async function resetPassword({
+  password,
+  token,
+}: {
+  password: string;
+  token: string;
+}) {
+  const response = await handleApiRequest(
+    api.patch(`/auth/reset-password/${token}`, { password })
+  );
+  return response.data.data;
+}

@@ -72,7 +72,7 @@ const ReturnCarModal: React.FC<ReturnCarModalProps> = ({
               <input
                 type="datetime-local"
                 placeholder="Enter Card Number"
-                className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 required

@@ -117,7 +117,7 @@ const ManagePayment = () => {
                       format(booking.endDate, "yyyy-MM-dd HH:mm")}
                   </td>
 
-                  <td className="px-6 py-4 whitespace-nowrap text-primary-green">
+                  <td className="px-6 py-4 whitespace-nowrap text-success-color">
                     ${booking.totalCost}
                   </td>
 

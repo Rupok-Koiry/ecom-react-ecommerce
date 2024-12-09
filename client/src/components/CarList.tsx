@@ -30,7 +30,7 @@ function CarList({ buttonText, onButtonClick, carCount }: CarListProps) {
               className="w-full h-52 object-cover"
             />
             <button className="absolute top-2 right-2 bg-primary-white p-2 rounded-full shadow-lg hover:scale-90 transition-all">
-              <FaHeart className="text-primary-red" />
+              <FaHeart className="text-error-color" />
             </button>
           </div>
           <div className="p-4">
@@ -39,7 +39,7 @@ function CarList({ buttonText, onButtonClick, carCount }: CarListProps) {
             </h3>
             <div className="flex gap-5 items-center my-2">
               <p className="text-primary-grey uppercase">{car.type}</p>
-              <p className="text-primary-orange font-bold">
+              <p className="text-primary-brand font-bold">
                 ${car.pricePerHour} / Hours
               </p>
             </div>

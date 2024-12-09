@@ -24,6 +24,9 @@ import ManageReturn from "./pages/ManageReturn";
 import ManagePayment from "./pages/ManagePayment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentError from "./pages/PaymentError";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import ProductDetails from "./pages/ProductDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,79 +43,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<RootLayout />}>
             {/* Public Routes */}
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="cars" element={<Cars />} />
-            <Route path="car/:carId" element={<CarDetails />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="reset-password/:token" element={<ResetPassword />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<SignUp />} />
-
-            <Route path="privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="terms-of-service" element={<TermsOfService />} />
-            <Route path="/payment/success" element={<PaymentSuccess />} />
-            <Route path="/payment/error" element={<PaymentError />} />
-
-            <Route
-              path="booking"
-              element={
-                <ProtectedRoute restrictTo={["admin", "user"]}>
-                  <Booking />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Protected Routes */}
-            <Route path="dashboard" element={<DashboardLayout />}>
-              <Route
-                index
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-bookings"
-                element={
-                  <ProtectedRoute>
-                    <ManageBookings />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-cars"
-                element={
-                  <ProtectedRoute restrictTo={["admin"]}>
-                    <ManageCars />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-users"
-                element={
-                  <ProtectedRoute restrictTo={["admin"]}>
-                    <ManageUsers />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-return"
-                element={
-                  <ProtectedRoute restrictTo={["admin"]}>
-                    <ManageReturn />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-payment"
-                element={
-                  <ProtectedRoute restrictTo={["user"]}>
-                    <ManagePayment />
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
-
             {/* Catch-all route for 404 - Page Not Found */}
             <Route path="*" element={<NotFoundPage />} />
           </Route>

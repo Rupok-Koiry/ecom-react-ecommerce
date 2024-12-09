@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca33"
+  },
+  "name": "Smartphones"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca34"
+  },
+  "name": "Laptops"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca35"
+  },
+  "name": "Tablets"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca36"
+  },
+  "name": "Smartwatches"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca37"
+  },
+  "name": "Earbuds & Headphones"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca38"
+  },
+  "name": "Cameras"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca39"
+  },
+  "name": "Gaming Consoles"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca3a"
+  },
+  "name": "Accessories & Chargers"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca3b"
+  },
+  "name": "Home Appliances"
+},
+{
+  "_id": {
+    "$oid": "67570edd5b59414c3bdeca3c"
+  },
+  "name": "Networking Devices"
+}]

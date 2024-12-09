@@ -11,9 +11,9 @@ import ErrorMessage from "./ErrorMessage";
 const getStatusBadgeColor = (status: string) => {
   switch (status) {
     case "available":
-      return "bg-primary-green text-white";
+      return "bg-success-color text-white";
     case "unavailable":
-      return "bg-primary-red text-white";
+      return "bg-error-color text-white";
     default:
       return "bg-secondary-grey text-white";
   }
@@ -99,7 +99,7 @@ const CarTable = () => {
               <td className="px-6 py-4 whitespace-nowrap">{car.description}</td>
               <td className="px-6 py-4 whitespace-nowrap">{car.color}</td>
               <td className="px-6 py-4 whitespace-nowrap">{car.type}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-primary-green">
+              <td className="px-6 py-4 whitespace-nowrap text-success-color">
                 ${car.pricePerHour}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">

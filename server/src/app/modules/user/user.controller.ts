@@ -30,7 +30,7 @@ export const followShop = catchAsync(
     }
 
     const user = await User.findById(userId);
-    if (user?.followedShops.includes(shopId)) {
+    if (user?.followedShops.includes(shopId.toString())) {
       return res.status(httpStatus.BAD_REQUEST).json({
         success: false,
         statusCode: httpStatus.BAD_REQUEST,
@@ -39,7 +39,7 @@ export const followShop = catchAsync(
     }
 
     // Update relationships
-    user?.followedShops.push(shopId);
+    user?.followedShops.push(shopId.toString());
     shop.followers.push(userId);
 
     await user?.save();
@@ -65,7 +65,7 @@ export const unfollowShop = catchAsync(
     }
 
     const user = await User.findById(userId);
-    if (!user?.followedShops.includes(shopId)) {
+    if (!user?.followedShops.includes(shopId.toString())) {
       return res.status(httpStatus.BAD_REQUEST).json({
         success: false,
         statusCode: httpStatus.BAD_REQUEST,

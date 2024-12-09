@@ -4,7 +4,6 @@ import catchAsync from '../../utils/catchAsync';
 import AppError from '../../errors/AppError';
 import Review from './review.model';
 import Product from '../product/product.model';
-import { getAll } from '../../utils/handlerFactory';
 
 // Helper Function: Update Product Ratings
 const updateProductRatings = async (productId: string) => {
@@ -19,7 +18,7 @@ const updateProductRatings = async (productId: string) => {
   }
 };
 
-// 1. Create Review
+// Create Review
 export const createReview = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { productId } = req.params;
@@ -66,14 +65,7 @@ export const createReview = catchAsync(
   },
 );
 
-// 2. Get All Reviews for a Product
-export const getReviewsForProduct = catchAsync(async (req: Request) => {
-  const { productId } = req.params;
-  req.query.product = productId;
-  getAll(Review, 'user');
-});
-
-// 3. Update Review
+// Update Review
 export const updateReview = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { reviewId } = req.params;
@@ -112,7 +104,7 @@ export const updateReview = catchAsync(
   },
 );
 
-// 4. Delete Review
+// Delete Review
 export const deleteReview = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { reviewId } = req.params;

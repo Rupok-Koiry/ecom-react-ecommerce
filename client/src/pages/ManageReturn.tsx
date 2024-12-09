@@ -122,7 +122,7 @@ const ManageReturn = () => {
                   <td className="px-6 py-4 whitespace-nowrap capitalize">
                     {booking.car.type}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-primary-green">
+                  <td className="px-6 py-4 whitespace-nowrap text-success-color">
                     ${booking.car.pricePerHour}
                   </td>
 

@@ -4,12 +4,13 @@ import { Link, NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/driveNow.png";
 import ThemeButton from "./ThemeButton";
-import { useMe } from "../hooks/auth/useMe";
+// import { useMe } from "../hooks/auth/useMe";
 import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useMe();
+  // const { user } = useMe();
+  const user = {};
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -64,8 +65,8 @@ const Header = () => {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 font-medium"
-                      : "hover:text-primary-orange transition duration-300 font-medium"
+                      ? "text-primary-brand transition duration-300 font-medium"
+                      : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
                   Home
@@ -76,8 +77,8 @@ const Header = () => {
                   to="/about"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 font-medium"
-                      : "hover:text-primary-orange transition duration-300 font-medium"
+                      ? "text-primary-brand transition duration-300 font-medium"
+                      : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
                   About Us
@@ -88,8 +89,8 @@ const Header = () => {
                   to="/booking"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 font-medium"
-                      : "hover:text-primary-orange transition duration-300 font-medium"
+                      ? "text-primary-brand transition duration-300 font-medium"
+                      : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
                   Booking
@@ -100,8 +101,8 @@ const Header = () => {
                   to="/cars"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 font-medium"
-                      : "hover:text-primary-orange transition duration-300 font-medium"
+                      ? "text-primary-brand transition duration-300 font-medium"
+                      : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
                   Cars
@@ -112,7 +113,7 @@ const Header = () => {
                   smooth
                   scroll={scrollWithOffset}
                   to="/about#contact"
-                  className={`hover:text-primary-orange transition duration-300 font-medium`}
+                  className={`hover:text-primary-brand transition duration-300 font-medium`}
                 >
                   Contact
                 </HashLink>
@@ -123,8 +124,8 @@ const Header = () => {
                     to="/dashboard"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-primary-orange transition duration-300 font-medium"
-                        : "hover:text-primary-orange transition duration-300 font-medium"
+                        ? "text-primary-brand transition duration-300 font-medium"
+                        : "hover:text-primary-brand transition duration-300 font-medium"
                     }
                   >
                     Dashboard
@@ -136,8 +137,8 @@ const Header = () => {
                     to="/login"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-primary-orange transition duration-300 font-medium"
-                        : "hover:text-primary-orange transition duration-300 font-medium"
+                        ? "text-primary-brand transition duration-300 font-medium"
+                        : "hover:text-primary-brand transition duration-300 font-medium"
                     }
                   >
                     Login
@@ -162,8 +163,8 @@ const Header = () => {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 block"
-                      : "hover:text-primary-orange transition duration-300 block"
+                      ? "text-primary-brand transition duration-300 block"
+                      : "hover:text-primary-brand transition duration-300 block"
                   }
                   onClick={toggleMenu}
                 >
@@ -175,8 +176,8 @@ const Header = () => {
                   to="/about"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 block"
-                      : "hover:text-primary-orange transition duration-300 block"
+                      ? "text-primary-brand transition duration-300 block"
+                      : "hover:text-primary-brand transition duration-300 block"
                   }
                   onClick={toggleMenu}
                 >
@@ -188,8 +189,8 @@ const Header = () => {
                   to="/booking"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 block"
-                      : "hover:text-primary-orange transition duration-300 block"
+                      ? "text-primary-brand transition duration-300 block"
+                      : "hover:text-primary-brand transition duration-300 block"
                   }
                   onClick={toggleMenu}
                 >
@@ -201,8 +202,8 @@ const Header = () => {
                   to="/about#contact"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 block"
-                      : "hover:text-primary-orange transition duration-300 block"
+                      ? "text-primary-brand transition duration-300 block"
+                      : "hover:text-primary-brand transition duration-300 block"
                   }
                   onClick={toggleMenu}
                 >
@@ -214,8 +215,8 @@ const Header = () => {
                   to="/dashboard"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-orange transition duration-300 block"
-                      : "hover:text-primary-orange transition duration-300 block"
+                      ? "text-primary-brand transition duration-300 block"
+                      : "hover:text-primary-brand transition duration-300 block"
                   }
                   onClick={toggleMenu}
                 >

@@ -66,8 +66,8 @@ const DashboardLayout: React.FC = () => {
         className={({ isActive }) =>
           `flex items-center p-3 rounded-lg transition-colors font-medium ${
             isActive
-              ? "bg-secondary-background text-primary-orange"
-              : "text-secondary-text hover:bg-secondary-background hover:text-primary-orange"
+              ? "bg-secondary-background text-primary-brand"
+              : "text-secondary-text hover:bg-secondary-background hover:text-primary-brand"
           }`
         }
         onClick={() => isMobile && setIsSidebarOpen(false)}
@@ -81,7 +81,7 @@ const DashboardLayout: React.FC = () => {
     <div className="flex h-screen bg-primary-background overflow-hidden">
       {/* Mobile Sidebar Toggle */}
       <motion.button
-        className="lg:hidden fixed top-2/4 right-4 z-20 p-2 bg-primary-orange text-primary-white rounded-full shadow-lg"
+        className="lg:hidden fixed top-2/4 right-4 z-20 p-2 bg-primary-brand text-primary-white rounded-full shadow-lg"
         onClick={toggleSidebar}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -153,7 +153,7 @@ const DashboardLayout: React.FC = () => {
                 transition={{ delay: 0.5 }}
               >
                 <motion.button
-                  className="flex items-center w-full p-3 rounded-lg bg-secondary-background text-secondary-text hover:bg-primary-orange hover:text-primary-white transition-colors"
+                  className="flex items-center w-full p-3 rounded-lg bg-secondary-background text-secondary-text hover:bg-primary-brand hover:text-primary-white transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={isPending}

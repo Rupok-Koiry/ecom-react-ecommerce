@@ -11,7 +11,7 @@ const PrivacyPolicy: React.FC = () => {
         <p className="mb-4 text-secondary-text">
           Welcome to{" "}
           <span className="font-medium">
-            Drive <span className="text-primary-orange">Now</span>
+            Drive <span className="text-primary-brand">Now</span>
           </span>
           ! Your privacy is very important to us. This Privacy Policy outlines
           how we collect, use, and protect your personal information when you
@@ -25,23 +25,23 @@ const PrivacyPolicy: React.FC = () => {
           We may collect the following information when you use our services:
         </p>
         <ul className="list-disc list-inside mb-4">
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               Personal Identification Information (Name, email address, phone
               number, etc.)
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               Payment information (credit card details, billing address, etc.)
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               Rental history and preferences
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               Location data (if you allow us to collect it)
             </span>
@@ -55,27 +55,27 @@ const PrivacyPolicy: React.FC = () => {
           We use the information we collect in the following ways:
         </p>
         <ul className="list-disc list-inside mb-4">
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               To provide and manage our car rental services
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               To process payments and bookings
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               To personalize your experience and offer customer support
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               To send you promotional offers and updates
             </span>
           </li>
-          <li className="text-primary-orange">
+          <li className="text-primary-brand">
             <span className="text-secondary-text">
               To improve our website and services
             </span>
@@ -126,7 +126,7 @@ const PrivacyPolicy: React.FC = () => {
           at{" "}
           <a
             href="mailto:support@drivenow.com"
-            className="text-primary-orange font-medium"
+            className="text-primary-brand font-medium"
           >
             support@drivenow.com
           </a>

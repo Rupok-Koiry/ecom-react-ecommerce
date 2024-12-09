@@ -11,9 +11,9 @@ import ErrorMessage from "./ErrorMessage";
 const getRoleBadgeColor = (role: string) => {
   switch (role) {
     case "admin":
-      return "bg-primary-orange text-white";
+      return "bg-primary-brand text-white";
     case "user":
-      return "bg-primary-green text-white";
+      return "bg-success-color text-white";
     default:
       return "bg-secondary-grey text-white";
   }

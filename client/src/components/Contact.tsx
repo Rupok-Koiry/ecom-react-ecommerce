@@ -20,7 +20,7 @@ const Contact = () => {
             </p>
             <ul className="mb-6 md:mb-0">
               <li className="flex">
-                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-orange hover:bg-secondary-orange text-gray-50 transition ease-in duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-brand hover:bg-secondary-brand text-gray-50 transition ease-in duration-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -46,7 +46,7 @@ const Contact = () => {
                 </div>
               </li>
               <li className="flex">
-                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-orange hover:bg-secondary-orange text-gray-50 transition ease-in duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-brand hover:bg-secondary-brand text-gray-50 transition ease-in duration-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -75,7 +75,7 @@ const Contact = () => {
                 </div>
               </li>
               <li className="flex">
-                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-orange hover:bg-secondary-orange text-gray-50 transition ease-in duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-brand hover:bg-secondary-brand text-gray-50 transition ease-in duration-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -119,7 +119,7 @@ const Contact = () => {
                       type="text"
                       id="name"
                       placeholder="Your name"
-                      className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
+                      className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
                       name="name"
                     />
                   </div>
@@ -132,7 +132,7 @@ const Contact = () => {
                       type="email"
                       id="email"
                       placeholder="Your email address"
-                      className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
+                      className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
                       name="email"
                     />
                   </div>
@@ -148,7 +148,7 @@ const Contact = () => {
                     cols={30}
                     rows={5}
                     placeholder="Write your message..."
-                    className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
+                    className="w-full mb-1 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3 text-primary-white"
                   ></textarea>
                 </div>
               </div>

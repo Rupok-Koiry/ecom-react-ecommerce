@@ -26,10 +26,13 @@ export async function getTransactionDetails(transactionId: string) {
 }
 
 // Update a transaction (Admin only)
-export async function updateTransaction(
-  transactionId: string,
-  updatedTransaction: any
-) {
+export async function updateTransaction({
+  transactionId,
+  updatedTransaction,
+}: {
+  transactionId: string;
+  updatedTransaction: any;
+}) {
   const response = await handleApiRequest(
     api.patch(`/transactions/${transactionId}`, updatedTransaction)
   );

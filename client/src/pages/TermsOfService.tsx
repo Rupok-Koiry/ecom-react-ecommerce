@@ -11,7 +11,7 @@ const TermsOfService: React.FC = () => {
         <p className="mb-4 text-secondary-text">
           Welcome to{" "}
           <span className="font-medium">
-            Drive <span className="text-primary-orange">Now</span>
+            Drive <span className="text-primary-brand">Now</span>
           </span>
           ! These terms and conditions outline the rules and regulations for the
           use of our car rental services. By accessing or using our services,
@@ -19,7 +19,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">1.</span> General Conditions
+          <span className="text-primary-brand">1.</span> General Conditions
         </h2>
         <p className="mb-4 text-secondary-text">
           You must be at least 18 years old to use our services. By using our
@@ -28,7 +28,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">2.</span> Use of Services
+          <span className="text-primary-brand">2.</span> Use of Services
         </h2>
         <p className="mb-4 text-secondary-text">
           Our vehicles are available for rent subject to availability. You agree
@@ -38,7 +38,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">3.</span> Payment and Fees
+          <span className="text-primary-brand">3.</span> Payment and Fees
         </h2>
         <p className="mb-4 text-secondary-text">
           All payments must be made in full at the time of booking. Additional
@@ -47,7 +47,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">4.</span> Cancellations and
+          <span className="text-primary-brand">4.</span> Cancellations and
           Refunds
         </h2>
         <p className="mb-4 text-secondary-text">
@@ -58,7 +58,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">5.</span> Prohibited Activities
+          <span className="text-primary-brand">5.</span> Prohibited Activities
         </h2>
         <p className="mb-4 text-secondary-text">
           You may not use our vehicles for any illegal activities, racing,
@@ -68,8 +68,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">6.</span> Limitation of
-          Liability
+          <span className="text-primary-brand">6.</span> Limitation of Liability
         </h2>
         <p className="mb-4 text-secondary-text">
           Drive Now is not liable for any direct, indirect, incidental, or
@@ -79,7 +78,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">7.</span> Governing Law
+          <span className="text-primary-brand">7.</span> Governing Law
         </h2>
         <p className="mb-4 text-secondary-text">
           These terms shall be governed by and construed in accordance with the
@@ -88,7 +87,7 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">8.</span> Changes to These Terms
+          <span className="text-primary-brand">8.</span> Changes to These Terms
         </h2>
         <p className="mb-4 text-secondary-text">
           We reserve the right to modify these terms at any time. Any changes
@@ -98,14 +97,14 @@ const TermsOfService: React.FC = () => {
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          <span className="text-primary-orange">9.</span> Contact Us
+          <span className="text-primary-brand">9.</span> Contact Us
         </h2>
         <p className="mb-4 text-secondary-text">
           If you have any questions about these Terms of Service, please contact
           us at{" "}
           <a
             href="mailto:support@drivenow.com"
-            className="text-primary-orange font-medium"
+            className="text-primary-brand font-medium"
           >
             support@drivenow.com
           </a>

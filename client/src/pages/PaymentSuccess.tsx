@@ -43,7 +43,7 @@ const PaymentSuccess = () => {
         animate="visible"
       >
         <motion.div variants={iconVariants} initial="hidden" animate="visible">
-          <IoCheckmarkCircle className="text-primary-green  mb-4" size={80} />
+          <IoCheckmarkCircle className="text-success-color  mb-4" size={80} />
         </motion.div>
         <h1 className="text-2xl font-bold mb-2">Payment Successful!</h1>
         <p className="text-secondary-text mb-6">

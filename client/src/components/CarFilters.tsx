@@ -28,8 +28,8 @@ const CarFilters: React.FC = () => {
   return (
     <section className="container px-5 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3">
-          <FaSearch className="text-primary-orange mr-2" />
+        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3">
+          <FaSearch className="text-primary-brand mr-2" />
           <input
             type="text"
             placeholder="Search by Name"
@@ -37,8 +37,8 @@ const CarFilters: React.FC = () => {
             onChange={handleSearchChange}
           />
         </div>
-        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3">
-          <FaCarSide className="text-primary-orange mr-2" />
+        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3">
+          <FaCarSide className="text-primary-brand mr-2" />
           <select
             className="w-full focus:outline-none bg-transparent text-secondary-text"
             onChange={handleTypeChange}
@@ -54,8 +54,8 @@ const CarFilters: React.FC = () => {
             <option value="luxury">Luxury</option>
           </select>
         </div>
-        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3">
-          <FaDollarSign className="text-primary-green mr-2" />
+        <div className="flex items-center border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3">
+          <FaDollarSign className="text-success-color mr-2" />
           <select
             className="w-full focus:outline-none bg-transparent text-secondary-text"
             onChange={handlePriceChange}

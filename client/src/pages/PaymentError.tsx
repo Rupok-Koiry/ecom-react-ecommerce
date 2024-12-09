@@ -42,7 +42,7 @@ const PaymentError = () => {
         animate="visible"
       >
         <motion.div variants={iconVariants} initial="hidden" animate="visible">
-          <IoCloseCircle className="text-primary-red mb-4" size={80} />
+          <IoCloseCircle className="text-error-color mb-4" size={80} />
         </motion.div>
         <h1 className="text-2xl font-bold mb-2">Payment Failed</h1>
         <p className="text-secondary-text mb-6">

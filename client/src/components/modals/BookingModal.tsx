@@ -62,7 +62,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
             </button>
             <div className="text-primary-text mb-3">
               <h2 className="text-3xl font-semibold mb-4 flex items-center gap-2">
-                <FaCar className="text-primary-orange" /> {car?.name}
+                <FaCar className="text-primary-brand" /> {car?.name}
               </h2>
               <p className="text-lg mb-4 text-secondary-text">
                 {car?.description}
@@ -77,7 +77,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                   <span className="font-semibold">Type:</span> {car?.type}
                 </p>
                 <p className="text-lg mb-2 flex items-center gap-2">
-                  <FaDollarSign className="text-primary-green" />{" "}
+                  <FaDollarSign className="text-success-color" />{" "}
                   <span className="font-semibold">Price per Hour:</span> $
                   {car?.pricePerHour}
                 </p>
@@ -87,7 +87,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                 {car?.features.map((feature, index) => (
                   <div className="flex items-center" key={index}>
                     <FaCheckCircle
-                      className="mr-2 text-primary-green"
+                      className="mr-2 text-success-color"
                       size={24}
                     />
 
@@ -108,7 +108,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                 <input
                   type="text"
                   placeholder="Enter Card Number"
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   value={card}
                   onChange={(e) => setCard(e.target.value)}
                   required
@@ -119,7 +119,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                 <input
                   type="text"
                   placeholder="Enter NID or Passport Number"
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   value={passport}
                   onChange={(e) => setPassport(e.target.value)}
                   required
@@ -130,7 +130,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                 <input
                   type="text"
                   placeholder="Enter Driving License Number"
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   value={drivingLicense}
                   onChange={(e) => setDrivingLicense(e.target.value)}
                   required
@@ -144,14 +144,14 @@ const BookingModal: React.FC<BookingModalProps> = ({
               <footer className="mt-4 text-center text-sm text-secondary-text font-medium">
                 <a
                   href="/privacy-policy"
-                  className="hover:text-primary-orange transition-all duration-300"
+                  className="hover:text-primary-brand transition-all duration-300"
                 >
                   Privacy Policy
                 </a>{" "}
                 |{" "}
                 <a
                   href="/terms-of-service"
-                  className="hover:text-primary-orange transition-all duration-300"
+                  className="hover:text-primary-brand transition-all duration-300"
                 >
                   Terms of Service
                 </a>

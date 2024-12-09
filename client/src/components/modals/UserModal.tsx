@@ -117,11 +117,11 @@ const UserModal: React.FC<UserModalProps> = ({
                 <input
                   type="text"
                   {...register("name", { required: "Name is required" })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter user name"
                 />
                 {errors.name && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.name.message}
                   </p>
                 )}
@@ -133,11 +133,11 @@ const UserModal: React.FC<UserModalProps> = ({
                 <input
                   type="email"
                   {...register("email", { required: "Email is required" })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter user email"
                 />
                 {errors.email && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.email.message}
                   </p>
                 )}
@@ -148,13 +148,13 @@ const UserModal: React.FC<UserModalProps> = ({
                 </label>
                 <select
                   {...register("role", { required: "Role is required" })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                 </select>
                 {errors.role && (
-                  <p className="text-primary-red text-sm">
+                  <p className="text-error-color text-sm">
                     {errors.role.message}
                   </p>
                 )}
@@ -169,11 +169,11 @@ const UserModal: React.FC<UserModalProps> = ({
                     {...register("password", {
                       required: "Password is required for new users",
                     })}
-                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                     placeholder="Enter user password"
                   />
                   {errors.password && (
-                    <p className="text-primary-red text-sm">
+                    <p className="text-error-color text-sm">
                       {errors.password.message}
                     </p>
                   )}
@@ -186,7 +186,7 @@ const UserModal: React.FC<UserModalProps> = ({
                 <input
                   type="tel"
                   {...register("phone")}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter user phone number"
                 />
               </div>
@@ -196,7 +196,7 @@ const UserModal: React.FC<UserModalProps> = ({
                 </label>
                 <textarea
                   {...register("address")}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                   placeholder="Enter user address"
                   rows={3}
                 />

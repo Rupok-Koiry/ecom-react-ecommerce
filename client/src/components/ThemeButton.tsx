@@ -40,7 +40,7 @@ const ThemeButton: React.FC = () => {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="px-4 py-2 bg-primary-background text-primary-orange font-medium rounded-md focus:outline-none"
+        className="px-4 py-2 bg-primary-background text-primary-brand font-medium rounded-md focus:outline-none"
       >
         {theme === "light" ? (
           <LuSun size={20} />
@@ -56,7 +56,7 @@ const ThemeButton: React.FC = () => {
             onClick={() => setThemeOption("light")}
             className={`flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-primary-background font-medium ${
               theme === "light"
-                ? "bg-secondary-background text-primary-orange"
+                ? "bg-secondary-background text-primary-brand"
                 : "text-primary-text"
             }`}
           >
@@ -67,7 +67,7 @@ const ThemeButton: React.FC = () => {
             onClick={() => setThemeOption("dark")}
             className={`flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-primary-background font-medium ${
               theme === "dark"
-                ? "bg-secondary-background text-primary-orange"
+                ? "bg-secondary-background text-primary-brand"
                 : "text-primary-text"
             }`}
           >
@@ -78,7 +78,7 @@ const ThemeButton: React.FC = () => {
             onClick={() => setThemeOption("system")}
             className={`flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-primary-background font-medium ${
               theme === "system"
-                ? "bg-secondary-background text-primary-orange"
+                ? "bg-secondary-background text-primary-brand"
                 : "text-primary-text"
             }`}
           >

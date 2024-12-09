@@ -1,5 +1,11 @@
 import express from 'express';
-import { logout, signin, signup } from './auth.controller';
+import {
+  logout,
+  signin,
+  signup,
+  forgotPassword,
+  resetPassword,
+} from './auth.controller';
 
 const router = express.Router();
 
@@ -7,5 +13,6 @@ const router = express.Router();
 router.post('/signup', signup);
 router.post('/signin', signin);
 router.get('/logout', logout);
-
+router.post('/forgot-password', forgotPassword);
+router.patch('/reset-password/:token', resetPassword);
 export const AuthRoutes = router;

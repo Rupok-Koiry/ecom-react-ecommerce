@@ -34,7 +34,7 @@ const Fleet = () => {
       </h2>
       <p className="text-secondary-text mb-6">
         At <span className="font-medium">Drive</span>{" "}
-        <span className="text-primary-orange font-medium">Now</span>, we offer a
+        <span className="text-primary-brand font-medium">Now</span>, we offer a
         diverse range of vehicles to suit every need and preference:
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

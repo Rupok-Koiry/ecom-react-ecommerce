@@ -30,15 +30,13 @@ const Commitment = () => {
       </h2>
       <p className="text-secondary-text mb-6">
         At <span className="font-medium">Drive</span>{" "}
-        <span className="text-primary-orange font-medium">Now</span>, we are
+        <span className="text-primary-brand font-medium">Now</span>, we are
         committed to upholding these core values:
       </p>
       <div className="space-y-4">
         {values.map((value, index) => (
           <div key={index} className="flex items-start">
-            <div className="text-primary-orange text-2xl mr-4">
-              {value.icon}
-            </div>
+            <div className="text-primary-brand text-2xl mr-4">{value.icon}</div>
             <div>
               <h3 className="font-semibold text-primary-text mb-1">
                 {value.title}

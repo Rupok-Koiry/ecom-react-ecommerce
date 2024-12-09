@@ -97,7 +97,7 @@ const BookingFilter = ({
           </label>
           <select
             id="location"
-            className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+            className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
             required
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
               setSelectedLocation(e.target.value)
@@ -125,7 +125,7 @@ const BookingFilter = ({
           </label>
           <select
             id="car-type"
-            className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-orange border outline-none py-1.5 lg:py-2 px-3"
+            className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
               setType(e.target.value)
             }
