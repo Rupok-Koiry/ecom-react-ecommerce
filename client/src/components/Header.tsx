@@ -98,14 +98,14 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/cars"
+                  to="/cart"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary-brand transition duration-300 font-medium"
                       : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
-                  Cars
+                  Cart
                 </NavLink>
               </li>
               <li>
@@ -186,7 +186,7 @@ const Header = () => {
               </motion.li>
               <motion.li variants={itemVariants}>
                 <NavLink
-                  to="/booking"
+                  to="/cart"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary-brand transition duration-300 block"
@@ -194,7 +194,7 @@ const Header = () => {
                   }
                   onClick={toggleMenu}
                 >
-                  Booking
+                  Cart
                 </NavLink>
               </motion.li>
               <motion.li variants={itemVariants}>

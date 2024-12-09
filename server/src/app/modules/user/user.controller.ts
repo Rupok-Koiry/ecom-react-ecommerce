@@ -5,15 +5,19 @@ import Shop from '../shop/shop.model';
 import { Types } from 'mongoose';
 import catchAsync from '../../utils/catchAsync';
 import AppError from '../../errors/AppError';
-import {
-  deleteOne,
-  getAll,
-  getOne,
-  updateOne,
-} from '../../utils/handlerFactory';
+import { deleteOne, getAll, updateOne } from '../../utils/handlerFactory';
 
 // Get the user's profile
-export const getUserProfile = getOne(User);
+export const getUserProfile = catchAsync(async (req, res) => {
+  const userId = req.user.userId;
+  const user = await User.findById(userId);
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'User retrieved successfully',
+    data: user,
+  });
+});
 
 // Update the user's profile
 export const updateUserProfile = updateOne(User);
@@ -21,7 +25,7 @@ export const updateUserProfile = updateOne(User);
 // Follow a shop
 export const followShop = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const userId = req.user.id;
+    const userId = req.user.userId;
     const shopId = new Types.ObjectId(req.params.shopId);
 
     const shop = await Shop.findById(shopId);
@@ -56,7 +60,7 @@ export const followShop = catchAsync(
 // Unfollow a shop
 export const unfollowShop = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const userId = req.user.id;
+    const userId = req.user.userId;
     const shopId = new Types.ObjectId(req.params.shopId);
 
     const shop = await Shop.findById(shopId);

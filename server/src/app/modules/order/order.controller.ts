@@ -14,7 +14,7 @@ export const placeOrder = catchAsync(
     }
 
     const order = await Order.create({
-      user: req.user.id,
+      user: req.user.userId,
       products,
       totalAmount,
       shippingAddress,
@@ -33,7 +33,7 @@ export const placeOrder = catchAsync(
 // Get orders for a user
 export const getUserOrders = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const orders = await Order.find({ user: req.user.id }).populate(
+    const orders = await Order.find({ user: req.user.userId }).populate(
       'products.product shop',
     );
 
@@ -65,10 +65,11 @@ export const getOrderDetails = catchAsync(
 
     // Allow only the order's user, vendor of the shop, or admin to view
     if (
-      (req.user.role === 'user' && order.user._id.toString() !== req.user.id) ||
+      (req.user.role === 'user' &&
+        order.user._id.toString() !== req.user.userId) ||
       (req.user.role === 'vendor' &&
         //@ts-expect-error eslint-disable-next-line
-        order.shop.vendor.toString() !== req.user.id)
+        order.shop.vendor.toString() !== req.user.userId)
     ) {
       return next(
         new AppError(403, 'You are not authorized to view this order'),
@@ -91,7 +92,7 @@ export const getVendorOrders = catchAsync(
 
     // Verify that the shop belongs to the vendor
     const shop = await Shop.findById(shopId);
-    if (!shop || shop.vendor.toString() !== req.user.id) {
+    if (!shop || shop.vendor.toString() !== req.user.userId) {
       return next(
         new AppError(
           403,

@@ -34,25 +34,23 @@ const PaymentError = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary-background text-primary-text">
+    <div className="flex items-center justify-center py-12 lg:py-16 bg-secondary-background text-primary-text">
       <motion.div
-        className="p-8 bg-primary-background shadow-lg rounded-lg flex flex-col items-center text-center"
+        className="p-8 bg-white shadow-lg rounded-lg flex flex-col items-center text-center border border-red-300"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div variants={iconVariants} initial="hidden" animate="visible">
-          <IoCloseCircle className="text-error-color mb-4" size={80} />
+          <IoCloseCircle className="text-red-600 mb-4" size={80} />
         </motion.div>
-        <h1 className="text-2xl font-bold mb-2">Payment Failed</h1>
-        <p className="text-secondary-text mb-6">
+        <h1 className="text-3xl font-bold text-red-600 mb-2">Payment Failed</h1>
+        <p className="text-gray-600 mb-6">
           Unfortunately, your payment could not be processed. Please try again
           or contact support.
         </p>
 
-        <Button onClick={() => navigate("/dashboard/manage-payment")}>
-          Try Again
-        </Button>
+        <Button onClick={() => navigate("/")}>Go to Home</Button>
       </motion.div>
     </div>
   );

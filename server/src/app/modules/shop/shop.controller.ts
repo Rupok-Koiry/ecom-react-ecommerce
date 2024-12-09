@@ -19,7 +19,7 @@ export const createShop = createOne(Shop);
 export const getAllShop = getAll(Shop);
 
 // Get shop details
-export const getShopDetails = getOne(Shop, 'owner');
+export const getShopDetails = getOne(Shop, 'vendor');
 
 // Update a shop
 export const updateShop = updateOne(Shop);

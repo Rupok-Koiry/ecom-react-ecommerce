@@ -12,7 +12,7 @@ const SectionTitle = ({ title, description, className }: SectionTitle) => {
       <h3 className="text-3xl md:text-4xl xl:text-5xl text-primary-text font-bold mb-4 md:mb-6 capitalize font-playwrite">
         {title}
       </h3>
-      {description && <p className="mb-5 text-secondary-text">{description}</p>}
+      {description && <p className="text-secondary-text">{description}</p>}
     </div>
   );
 };

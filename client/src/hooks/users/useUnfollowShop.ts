@@ -15,6 +15,10 @@ export function useUnfollowShop() {
       queryClient.invalidateQueries({
         queryKey: ["userProfile"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["shopDetails"],
+      });
+
       toast.success("Shop unfollowed successfully");
     },
     onError: (error) => {

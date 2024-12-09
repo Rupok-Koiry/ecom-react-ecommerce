@@ -1,4 +1,3 @@
-// src/components/PaymentSuccess.jsx
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
@@ -35,18 +34,20 @@ const PaymentSuccess = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary-background text-primary-text">
+    <div className="flex items-center justify-center lg:py-16 py-12 bg-secondary-background text-primary-text">
       <motion.div
-        className="p-8 bg-primary-background shadow-lg rounded-lg flex flex-col items-center text-center"
+        className="p-8 bg-white shadow-lg rounded-lg flex flex-col items-center text-center border border-gray-200"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div variants={iconVariants} initial="hidden" animate="visible">
-          <IoCheckmarkCircle className="text-success-color  mb-4" size={80} />
+          <IoCheckmarkCircle className="text-green-500 mb-4" size={80} />
         </motion.div>
-        <h1 className="text-2xl font-bold mb-2">Payment Successful!</h1>
-        <p className="text-secondary-text mb-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          Payment Successful!
+        </h1>
+        <p className="text-gray-600 mb-6">
           Thank you for your payment. Your transaction has been completed
           successfully.
         </p>

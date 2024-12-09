@@ -27,6 +27,10 @@ import PaymentError from "./pages/PaymentError";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ProductDetails from "./pages/ProductDetails";
+import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import RecentViews from "./pages/RecentViews";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,7 +48,13 @@ const App = () => {
           <Route path="/" element={<RootLayout />}>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/transaction/success" element={<PaymentSuccess />} />
+            <Route path="/transaction/error" element={<PaymentError />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/recent-views" element={<RecentViews />} />
             <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/shops/:id" element={<Shop />} />
             <Route path="reset-password/:token" element={<ResetPassword />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="login" element={<Login />} />

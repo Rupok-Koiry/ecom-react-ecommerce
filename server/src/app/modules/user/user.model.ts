@@ -73,9 +73,9 @@ userSchema.methods.createPasswordResetToken = function () {
 };
 
 // Static method to compare plain text password with the hashed password
-userSchema.statics.isPasswordMatched = async function (
-  plainTextPassword,
-  hashedPassword,
+userSchema.methods.isPasswordMatched = async function (
+  plainTextPassword: any,
+  hashedPassword: any,
 ) {
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };

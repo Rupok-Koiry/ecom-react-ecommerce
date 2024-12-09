@@ -33,7 +33,7 @@ export const createReview = catchAsync(
 
     // Check if user already reviewed this product
     const existingReview = await Review.findOne({
-      user: req.user.id,
+      user: req.user.userId,
       product: productId,
     });
     if (existingReview) {
@@ -47,7 +47,7 @@ export const createReview = catchAsync(
 
     // Create review
     const review = await Review.create({
-      user: req.user.id,
+      user: req.user.userId,
       product: productId,
       rating,
       comment,
@@ -78,7 +78,10 @@ export const updateReview = catchAsync(
       );
     }
 
-    const review = await Review.findOne({ _id: reviewId, user: req.user.id });
+    const review = await Review.findOne({
+      _id: reviewId,
+      user: req.user.userId,
+    });
     if (!review) {
       return next(
         new AppError(
@@ -115,7 +118,10 @@ export const deleteReview = catchAsync(
     }
 
     // Check authorization
-    if (req.user.role !== 'admin' && req.user.id !== review.user.toString()) {
+    if (
+      req.user.role !== 'admin' &&
+      req.user.userId !== review.user.toString()
+    ) {
       return next(
         new AppError(
           httpStatus.FORBIDDEN,

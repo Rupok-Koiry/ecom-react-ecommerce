@@ -15,6 +15,10 @@ export function useFollowShop() {
       queryClient.invalidateQueries({
         queryKey: ["userProfile"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["shopDetails"],
+      });
+
       toast.success("Shop followed successfully");
     },
     onError: (error) => {
