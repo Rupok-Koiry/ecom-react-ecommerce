@@ -133,20 +133,21 @@ const Header = () => {
                 </>
               )}
 
-              {userProfile?.role === "vendor" && (
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-brand transition duration-300 font-medium"
-                        : "hover:text-primary-brand transition duration-300 font-medium"
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-              )}
+              {userProfile?.role === "vendor" ||
+                (userProfile?.role === "admin" && (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-primary-brand transition duration-300 font-medium"
+                          : "hover:text-primary-brand transition duration-300 font-medium"
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                ))}
               {!userProfile && (
                 <li>
                   <NavLink

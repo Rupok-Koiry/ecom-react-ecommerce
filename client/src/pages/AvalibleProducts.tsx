@@ -78,8 +78,8 @@ const AvailableProducts = () => {
     );
 
   return (
-    <div className="bg-primary-background py-10 lg:py-14 px-5">
-      <section className="container mx-auto">
+    <div className="bg-primary-background py-10 lg:py-14 px-5 ">
+      <section className="container mx-auto border-b border-secondary-grey">
         <SectionTitle
           title="Shop Products"
           description={`Browse all products in this shop`}

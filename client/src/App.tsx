@@ -62,7 +62,7 @@ const App = () => {
               <Route
                 index
                 element={
-                  <ProtectedRoute restrictTo={["vendor"]}>
+                  <ProtectedRoute restrictTo={["vendor", "admin"]}>
                     <Dashboard />
                   </ProtectedRoute>
                 }
@@ -91,39 +91,6 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
-              {/* <Route
-                path="manage-bookings"
-                element={
-                  <ProtectedRoute>
-                    <ManageBookings />
-                  </ProtectedRoute>
-                }
-              />
-              
-              <Route
-                path="manage-users"
-                element={
-                  <ProtectedRoute restrictTo={["admin"]}>
-                    <ManageUsers />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-return"
-                element={
-                  <ProtectedRoute restrictTo={["admin"]}>
-                    <ManageReturn />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="manage-payment"
-                element={
-                  <ProtectedRoute restrictTo={["user"]}>
-                    <ManagePayment />
-                  </ProtectedRoute>
-                }
-              /> */}
             </Route>
 
             {/* Catch-all route for 404 - Page Not Found */}
