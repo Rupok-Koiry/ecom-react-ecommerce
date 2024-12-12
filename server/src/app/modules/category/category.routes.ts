@@ -12,7 +12,7 @@ const router = express.Router();
 // Category Management
 router.get('/', getAllCategories);
 router.post('/', auth('admin'), createCategory);
-router.patch('/:categoryId', auth('admin'), updateCategory);
-router.delete('/:categoryId', auth('admin'), deleteCategory);
+router.patch('/:id', auth('admin'), updateCategory);
+router.delete('/:id', auth('admin'), deleteCategory);
 
 export default router;

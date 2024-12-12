@@ -16,7 +16,7 @@ const orderSchema = new Schema(
     totalPrice: { type: Number, required: true },
     status: {
       type: String,
-      enum: ['pending', 'completed', 'failed'],
+      enum: ['pending', 'success', 'failed'],
       default: 'pending',
     },
     shop: {

@@ -3,6 +3,7 @@ import catchAsync from '../../utils/catchAsync';
 import AppError from '../../errors/AppError';
 import Order from './order.model';
 import Shop from '../shop/shop.model';
+import { getAll } from '../../utils/handlerFactory';
 
 // Place a new order
 export const placeOrder = catchAsync(
@@ -64,7 +65,7 @@ export const getOrderDetails = catchAsync(
     });
   },
 );
-
+export const getAllOrders = getAll(Order, 'user shop');
 export const getUserOrders = catchAsync(async (req: Request, res: Response) => {
   const { page = 1, limit = 10 } = req.query;
 

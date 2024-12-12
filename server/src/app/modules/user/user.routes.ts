@@ -18,6 +18,6 @@ router.post('/follow/:shopId', auth('user'), followShop);
 router.delete('/unfollow/:shopId', auth('user'), unfollowShop);
 router.get('/', auth('admin'), getAllUsers);
 router.patch('/:userId/ban', auth('admin'), banUser);
-router.delete('/:userId', auth('admin'), deleteUser);
+router.delete('/:id', auth('admin'), deleteUser);
 
 export default router;

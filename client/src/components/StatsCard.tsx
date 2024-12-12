@@ -1,17 +1,4 @@
-type StatsCardProps = {
-  title: string;
-  value: string;
-  borderColor: string;
-  textColor: string;
-  icon: React.ReactNode;
-};
-const StatsCard = ({
-  title,
-  value,
-  icon,
-  borderColor,
-  textColor,
-}: StatsCardProps) => {
+const StatsCard = ({ title, value, icon, borderColor, textColor }: any) => {
   return (
     <div
       className={`relative bg-primary-white rounded-lg shadow-md p-6 border-l-4 ${borderColor} transition-transform transform hover:scale-105 hover:shadow-lg`}

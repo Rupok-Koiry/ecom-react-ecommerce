@@ -39,7 +39,7 @@ const Shop = () => {
     );
 
   const toggleFollow = () => {
-    if (shop.followers.includes(userProfile._id)) {
+    if (shop.followers.includes(userProfile?._id)) {
       unfollow(shop._id);
     } else {
       follow(shop._id);
@@ -73,12 +73,12 @@ const Shop = () => {
           <button
             onClick={toggleFollow}
             className={`flex items-center gap-2 px-6 py-3 rounded-md shadow-md text-primary-white font-semibold transition duration-300 ${
-              shop.followers.includes(userProfile._id)
+              shop.followers.includes(userProfile?._id)
                 ? "bg-error-color hover:bg-error-color/90"
                 : "bg-primary-brand hover:bg-secondary-brand"
             }`}
           >
-            {shop.followers.includes(userProfile._id) ? (
+            {shop.followers.includes(userProfile?._id) ? (
               <>
                 <FaUserMinus /> Unfollow
               </>

@@ -13,5 +13,5 @@ const router = express.Router();
 router.get('/', auth('vendor'), getVendorReviews);
 router.post('/:productId', auth('user'), createReview);
 router.patch('/:reviewId', auth('user'), updateReview);
-router.delete('/:reviewId', auth('vendor', 'admin'), deleteReview);
+router.delete('/:reviewId', auth('vendor'), deleteReview);
 export default router;

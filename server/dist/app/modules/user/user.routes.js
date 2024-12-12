@@ -14,5 +14,5 @@ router.post('/follow/:shopId', (0, auth_1.default)('user'), user_controller_1.fo
 router.delete('/unfollow/:shopId', (0, auth_1.default)('user'), user_controller_1.unfollowShop);
 router.get('/', (0, auth_1.default)('admin'), user_controller_1.getAllUsers);
 router.patch('/:userId/ban', (0, auth_1.default)('admin'), user_controller_1.banUser);
-router.delete('/:userId', (0, auth_1.default)('admin'), user_controller_1.deleteUser);
+router.delete('/:id', (0, auth_1.default)('admin'), user_controller_1.deleteUser);
 exports.default = router;

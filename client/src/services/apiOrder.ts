@@ -15,8 +15,13 @@ export async function placeOrder(orderData: {
 // Get orders for a specific vendor shop
 export async function getUserOrders(page?: number, limit?: number) {
   const response = await handleApiRequest(
-    api.get(`/orders?page=${page}&limit=${limit}`)
+    api.get(`/orders/users?page=${page}&limit=${limit}`)
   );
+  return response.data.data;
+}
+// Get orders for a specific vendor shop
+export async function getAllOrders() {
+  const response = await handleApiRequest(api.get(`/orders`));
   return response.data.data;
 }
 

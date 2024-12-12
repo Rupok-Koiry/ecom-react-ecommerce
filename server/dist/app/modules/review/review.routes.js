@@ -11,5 +11,5 @@ const router = express_1.default.Router();
 router.get('/', (0, auth_1.default)('vendor'), review_controller_1.getVendorReviews);
 router.post('/:productId', (0, auth_1.default)('user'), review_controller_1.createReview);
 router.patch('/:reviewId', (0, auth_1.default)('user'), review_controller_1.updateReview);
-router.delete('/:reviewId', (0, auth_1.default)('vendor', 'admin'), review_controller_1.deleteReview);
+router.delete('/:reviewId', (0, auth_1.default)('vendor'), review_controller_1.deleteReview);
 exports.default = router;

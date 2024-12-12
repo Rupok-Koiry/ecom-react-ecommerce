@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getVendorOrders = exports.getUserOrders = exports.getOrderDetails = exports.placeOrder = void 0;
+exports.getVendorOrders = exports.getUserOrders = exports.getAllOrders = exports.getOrderDetails = exports.placeOrder = void 0;
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const order_model_1 = __importDefault(require("./order.model"));
 const shop_model_1 = __importDefault(require("../shop/shop.model"));
+const handlerFactory_1 = require("../../utils/handlerFactory");
 // Place a new order
 exports.placeOrder = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { products, totalAmount, shippingAddress, shopId } = req.body;
@@ -61,6 +62,7 @@ exports.getOrderDetails = (0, catchAsync_1.default)((req, res, next) => __awaite
         data: order,
     });
 }));
+exports.getAllOrders = (0, handlerFactory_1.getAll)(order_model_1.default, 'user shop');
 exports.getUserOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { page = 1, limit = 10 } = req.query;
     const pageNumber = parseInt(page, 10);

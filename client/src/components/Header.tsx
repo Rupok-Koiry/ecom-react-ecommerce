@@ -6,6 +6,8 @@ import logo from "../assets/logo.png";
 import ThemeButton from "./ThemeButton";
 import { useUserProfile } from "../hooks/users/useUserProfile";
 import { useLogout } from "../hooks/auth/useLogout";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +16,7 @@ const Header = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const { items } = useSelector((state: RootState) => state.cart);
 
   const menuVariants = {
     hidden: { height: 0, opacity: 0 },
@@ -103,7 +106,7 @@ const Header = () => {
                       : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
-                  Cart
+                  Cart ({items.length})
                 </NavLink>
               </li>
               {userProfile?.role === "user" && (
@@ -239,7 +242,7 @@ const Header = () => {
                   }
                   onClick={toggleMenu}
                 >
-                  Cart
+                  Cart ({items.length})
                 </NavLink>
               </motion.li>
               {userProfile?.role === "vendor" && (
