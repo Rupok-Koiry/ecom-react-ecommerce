@@ -26,7 +26,10 @@ app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 // Middleware for enabling Cross-Origin Resource Sharing (CORS) for specified origins
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:5173'],
+    origin: [
+        'http://localhost:5173',
+        'https://ph-assignment-09-btl9.vercel.app',
+    ],
 }));
 // Route handlers for API endpoints prefixed with /api/v1
 app.use('/api', routes_1.default);

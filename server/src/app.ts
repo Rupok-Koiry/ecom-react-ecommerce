@@ -17,7 +17,10 @@ app.use(cookieParser());
 // Middleware for enabling Cross-Origin Resource Sharing (CORS) for specified origins
 app.use(
   cors({
-    origin: ['http://localhost:5173'],
+    origin: [
+      'http://localhost:5173',
+      'https://ph-assignment-09-btl9.vercel.app',
+    ],
   }),
 );
 
