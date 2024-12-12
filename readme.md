@@ -19,7 +19,7 @@ Welcome to **E-coom**! This guide will help you set up and run both the server a
 
 ## Live URL
 
-Check out the live version of the application here: [E-coom Live](https://your-live-url.com)
+Check out the live version of the application here: [E-coom Live](https://ph-assignment-09.vercel.app/)
 
 ## Features
 

@@ -2,7 +2,7 @@ const Spinner = ({ className }: { className?: string }) => {
   return (
     <div
       role="status"
-      className={`flex justify-center items-center ${className}`}
+      className={`flex justify-center items-center ${className} my-5`}
     >
       <svg
         aria-hidden="true"
