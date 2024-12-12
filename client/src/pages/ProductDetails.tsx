@@ -9,7 +9,9 @@ import { Navigation } from "swiper/modules";
 import { useProductReviews } from "../hooks/products/useProductReviews";
 import { Link } from "react-router-dom";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useUserOrders } from "../hooks/orders/useUserOrders";
+import { useCreateReview } from "../hooks/reviews/useCreateReview";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -34,8 +36,24 @@ const ProductDetails = () => {
     isLoading: reviewsLoading,
   } = useProductReviews(id as string);
 
+  const { orders } = useUserOrders();
+  const { create } = useCreateReview();
   const [recentViews, setRecentViews] = useLocalStorageState([], "recentViews");
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
+  const handleReviewSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    create({
+      productId: id as string,
+      reviewData: {
+        rating,
+        comment,
+      },
+    });
+    setRating(0);
+    setComment("");
+  };
   useEffect(() => {
     if (product) {
       // Check if the product is already in the recent views
@@ -80,28 +98,30 @@ const ProductDetails = () => {
       {/* Product Details Section */}
       <section className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         {/* Product Images */}
-        <Swiper
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
-          style={
-            {
-              "--swiper-navigation-color": "#d17842",
-            } as React.CSSProperties
-          }
-        >
-          {product.images.map((image: string, index: number) => (
-            <SwiperSlide key={index}>
-              <div className="flex justify-center items-center">
-                <img
-                  src={image}
-                  alt={product.name}
-                  className="rounded-lg object-cover shadow-md"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="flex justify-center">
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            className="mySwiper"
+            style={
+              {
+                "--swiper-navigation-color": "#d17842",
+              } as React.CSSProperties
+            }
+          >
+            {product.images.map((image: string, index: number) => (
+              <SwiperSlide key={index}>
+                <div className="flex justify-center items-center">
+                  <img
+                    src={image}
+                    alt={product.name}
+                    className="rounded-lg object-cover shadow-md"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         {/* Product Details */}
         <div>
@@ -187,7 +207,7 @@ const ProductDetails = () => {
         >
           {reviews?.map((review: any, index: number) => (
             <SwiperSlide key={index}>
-              <div className="p-4 bg-primary-background rounded-lg shadow-md">
+              <div className="p-4 bg-primary-background rounded-lg shadow-md mb-2">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <img
@@ -211,6 +231,71 @@ const ProductDetails = () => {
           ))}
         </Swiper>
       </section>
+      {/* Add a Review Section */}
+      {orders?.some((order: any) =>
+        order.products.some(
+          (orderedProduct: any) => orderedProduct.product._id === id
+        )
+      ) && (
+        <section className="container mx-auto my-14">
+          <SectionTitle
+            title="Add Your Review"
+            description="Share your experience with this product."
+          />
+          <form
+            onSubmit={handleReviewSubmit}
+            className="bg-primary-background p-6 rounded-lg shadow-md max-w-xl mx-auto"
+          >
+            <div className="mb-6">
+              <label
+                htmlFor="rating"
+                className="block text-secondary-text font-medium mb-2"
+              >
+                Rating
+              </label>
+              <div className="flex items-center gap-2">
+                {[...Array(5)].map((_, index) => (
+                  <button
+                    type="button"
+                    key={index}
+                    onClick={() => setRating(index + 1)}
+                    className={`text-2xl ${
+                      rating > index
+                        ? "text-warning-color"
+                        : "text-secondary-text"
+                    }`}
+                  >
+                    <FaStar />
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="comment"
+                className="block text-secondary-text font-medium mb-2"
+              >
+                Comment
+              </label>
+              <textarea
+                id="comment"
+                rows={4}
+                className="w-full border border-primary-brand rounded-lg p-3 text-primary-text bg-primary-background focus:outline-none focus:ring-2 focus:ring-secondary-brand"
+                placeholder="Write your review here..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-primary-brand text-white py-3 rounded-lg font-bold hover:bg-secondary-brand transition duration-300"
+            >
+              Submit Review
+            </button>
+          </form>
+        </section>
+      )}
     </div>
   );
 };

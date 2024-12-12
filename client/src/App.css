@@ -1,9 +1,9 @@
 .hero {
   background-image: linear-gradient(
-      rgba(24, 25, 26, 0.5),
-      rgba(24, 25, 26, 0.5)
+      rgba(30, 39, 73, 0.6),
+      rgba(30, 39, 73, 0.6)
     ),
-    url("https://images.pexels.com/photos/235222/pexels-photo-235222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    url("/images/bg3.avif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

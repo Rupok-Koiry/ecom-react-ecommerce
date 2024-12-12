@@ -17,7 +17,27 @@ const updateProductRatings = async (productId: string) => {
     await product.save();
   }
 };
+export const getVendorReviews = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const products = await Product.find({
+        vendor: req.user.userId,
+      });
+      const reviews = await Review.find({
+        product: { $in: products.map((product) => product._id) },
+      }).populate('user product');
 
+      res.status(httpStatus.OK).json({
+        success: true,
+        statusCode: httpStatus.OK,
+        message: `Shop reviews retrieved successfully`,
+        data: reviews,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 // Create Review
 export const createReview = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -28,20 +48,6 @@ export const createReview = catchAsync(
     if (rating < 1 || rating > 5) {
       return next(
         new AppError(httpStatus.BAD_REQUEST, 'Rating must be between 1 and 5.'),
-      );
-    }
-
-    // Check if user already reviewed this product
-    const existingReview = await Review.findOne({
-      user: req.user.userId,
-      product: productId,
-    });
-    if (existingReview) {
-      return next(
-        new AppError(
-          httpStatus.BAD_REQUEST,
-          'You have already reviewed this product.',
-        ),
       );
     }
 
@@ -115,19 +121,6 @@ export const deleteReview = catchAsync(
     const review = await Review.findById(reviewId);
     if (!review) {
       return next(new AppError(httpStatus.NOT_FOUND, 'Review not found.'));
-    }
-
-    // Check authorization
-    if (
-      req.user.role !== 'admin' &&
-      req.user.userId !== review.user.toString()
-    ) {
-      return next(
-        new AppError(
-          httpStatus.FORBIDDEN,
-          'You are not authorized to delete this review.',
-        ),
-      );
     }
 
     await review.deleteOne();

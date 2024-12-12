@@ -11,6 +11,11 @@ export async function createReview(
   );
   return response.data.data;
 }
+//Get shop reviews
+export async function getVendorReviews() {
+  const response = await handleApiRequest(api.get(`/reviews`));
+  return response.data.data;
+}
 
 // Get all reviews for a specific product
 export async function getReviewsForProduct(productId: string) {

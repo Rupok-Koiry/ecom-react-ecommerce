@@ -11,8 +11,9 @@ export function useLogout() {
     mutationFn: logoutApi,
     onSuccess: () => {
       toast.success("Logout successful");
-      queryClient.invalidateQueries({ queryKey: ["user"] });
-      queryClient.setQueryData(["user"], null);
+      localStorage.removeItem("recentViews");
+      queryClient.invalidateQueries({ queryKey: ["userProfile"] });
+      queryClient.setQueryData(["userProfile"], null);
       navigate("/");
     },
   });

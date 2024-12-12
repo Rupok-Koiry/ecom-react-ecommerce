@@ -1,26 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/AboutUs";
 import RootLayout from "./pages/layouts/RootLayout";
-import ManageBookings from "./pages/ManageBookings";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./pages/layouts/DashboardLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Cars from "./pages/Cars";
-import CarDetails from "./pages/CarDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import Booking from "./pages/Booking";
 import NotFoundPage from "./pages/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
-import ManageUsers from "./pages/ManageUser";
-import ManageReturn from "./pages/ManageReturn";
-import ManagePayment from "./pages/ManagePayment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentError from "./pages/PaymentError";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -34,6 +23,8 @@ import OrderHistory from "./pages/OrderHistory";
 import VendorOrderHistory from "./pages/VendorOrderHistory";
 import Comparison from "./pages/Comparison";
 import ManageProducts from "./pages/ManageProducts";
+import ManageReviews from "./pages/ManageReviews";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,10 +44,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/order-history" element={<OrderHistory />} />
             <Route path="/comparison" element={<Comparison />} />
-            <Route
-              path="/vendor-order-history/:shopId"
-              element={<VendorOrderHistory />}
-            />
+            <Route path="/products" element={<Products />} />
+
             <Route path="/transaction/success" element={<PaymentSuccess />} />
             <Route path="/transaction/error" element={<PaymentError />} />
             <Route path="/cart" element={<Cart />} />
@@ -83,6 +72,22 @@ const App = () => {
                 element={
                   <ProtectedRoute restrictTo={["vendor"]}>
                     <ManageProducts />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="order-history/:shopId"
+                element={
+                  <ProtectedRoute restrictTo={["vendor"]}>
+                    <VendorOrderHistory />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="manage-reviews"
+                element={
+                  <ProtectedRoute restrictTo={["vendor"]}>
+                    <ManageReviews />
                   </ProtectedRoute>
                 }
               />

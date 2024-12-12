@@ -19,7 +19,7 @@ const VendorOrderHistory = () => {
   };
 
   return (
-    <div className="bg-primary-background py-10 lg:py-14 px-5">
+    <section className="py-8 lg:py-10">
       <SectionTitle title="Order History" />
       <div className="w-full max-w-3xl p-4 sm:p-6 lg:p-8 bg-primary-white shadow-lg rounded-xl mx-auto space-y-6">
         {orders?.length ? (
@@ -99,7 +99,7 @@ const VendorOrderHistory = () => {
           disabledClassName="opacity-50 cursor-not-allowed"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

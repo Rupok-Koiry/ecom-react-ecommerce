@@ -8,7 +8,7 @@ import axios from "axios";
 import Button from "../Button";
 import { useUpdateProduct } from "../../hooks/products/useUpdateProduct";
 import { useCreateProduct } from "../../hooks/products/useCreateProduct";
-import { useAllShops } from "../../hooks/shops/useAllShops";
+import { useVendorShop } from "../../hooks/shops/useVendorShop";
 import { useAllCategories } from "../../hooks/categories/useAllCategories";
 
 interface FormData {
@@ -28,7 +28,7 @@ const ProductModal: React.FC<any> = ({
 }) => {
   const { updateProduct } = useUpdateProduct();
   const { createProduct } = useCreateProduct();
-  const { shops } = useAllShops();
+  const { shop } = useVendorShop();
   const { categories } = useAllCategories();
 
   const {
@@ -86,6 +86,8 @@ const ProductModal: React.FC<any> = ({
   const onSubmit = (newProduct: FormData) => {
     clearErrors("images");
     newProduct.images = uploadedImages;
+    newProduct.shop = shop._id;
+
     if (product) {
       updateProduct({
         updatedProduct: newProduct,
@@ -220,7 +222,7 @@ const ProductModal: React.FC<any> = ({
                   className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
                 >
                   <option value="">Select Category</option>
-                  {categories.map((category: any) => (
+                  {categories?.map((category: any) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
@@ -229,31 +231,6 @@ const ProductModal: React.FC<any> = ({
                 {errors.category && (
                   <p className="text-error-color text-sm">
                     {errors.category.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-primary-text mb-2">
-                  Shop
-                </label>
-
-                <select
-                  {...register("shop", {
-                    required: "shop is required",
-                  })}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                >
-                  <option value="">Select Shop</option>
-                  {shops.map((shop: any) => (
-                    <option key={shop._id} value={shop._id}>
-                      {shop.name}
-                    </option>
-                  ))}
-                </select>
-                {errors.shop && (
-                  <p className="text-error-color text-sm">
-                    {errors.shop.message}
                   </p>
                 )}
               </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import {
-  FaCar,
   FaCalendarAlt,
   FaSignOutAlt,
   FaBars,
@@ -12,9 +11,8 @@ import { BsSpeedometer } from "react-icons/bs";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useLogout } from "../../hooks/auth/useLogout";
-import { FaUser } from "react-icons/fa6";
-import { IoReturnUpForwardOutline } from "react-icons/io5";
-import { useUserProfile } from "../../hooks/users/useUserProfile";
+import { useVendorShop } from "../../hooks/shops/useVendorShop";
+import { FaComments } from "react-icons/fa6";
 
 interface NavItemProps {
   to: string;
@@ -23,11 +21,11 @@ interface NavItemProps {
 }
 
 const DashboardLayout: React.FC = () => {
+  const { shop } = useVendorShop();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 1024);
   const location = useLocation();
   const { isPending, logout } = useLogout();
-  const { userProfile } = useUserProfile();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -121,29 +119,19 @@ const DashboardLayout: React.FC = () => {
                   <NavItem to="/dashboard" icon={BsSpeedometer} end>
                     Dashboard
                   </NavItem>
-                  <NavItem to="/dashboard/manage-bookings" icon={FaCalendarAlt}>
-                    Manage Bookings
+                  <NavItem to="/dashboard/manage-products" icon={FaCalendarAlt}>
+                    Manage Products
                   </NavItem>
-                  {userProfile?.role === "admin" ? (
-                    <>
-                      <NavItem to="/dashboard/manage-cars" icon={FaCar}>
-                        Manage Cars
-                      </NavItem>
-                      <NavItem to="/dashboard/manage-users" icon={FaUser}>
-                        Manage Users
-                      </NavItem>
-                      <NavItem
-                        to="/dashboard/manage-return"
-                        icon={IoReturnUpForwardOutline}
-                      >
-                        Manage Return
-                      </NavItem>
-                    </>
-                  ) : (
-                    <NavItem to="/dashboard/manage-payment" icon={FaAmazonPay}>
-                      Manage Payment
-                    </NavItem>
-                  )}
+                  <NavItem to="/dashboard/manage-reviews" icon={FaComments}>
+                    Manage Review
+                  </NavItem>
+
+                  <NavItem
+                    to={`/dashboard/order-history/${shop?._id}`}
+                    icon={FaAmazonPay}
+                  >
+                    Order History
+                  </NavItem>
                 </motion.ul>
               </nav>
               <motion.div

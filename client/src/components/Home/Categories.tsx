@@ -43,12 +43,7 @@ const Categories = () => {
         {categories.map((category: any) => (
           <SwiperSlide key={category._id}>
             <Link to={`/products?category=${category._id}`}>
-              <img
-                className="size-48 object-contain mx-auto bg-secondary-background hover:scale-95 transition duration-300 rounded-full p-4 mb-3"
-                src={category.image}
-                alt={category.name}
-              />
-              <p className="text-primary-text text-center text-xl">
+              <p className="text-primary-text text-center text-xl size-48 flex justify-center items-center font-playwrite bg-secondary-background hover:scale-95 transition duration-300 rounded-full p-4 mb-3">
                 {category.name}
               </p>
             </Link>

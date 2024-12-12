@@ -1,60 +1,62 @@
-[{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca33"
+[
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca33"
+    },
+    "name": "Smartphones"
   },
-  "name": "Smartphones"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca34"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca34"
+    },
+    "name": "Laptops"
   },
-  "name": "Laptops"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca35"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca35"
+    },
+    "name": "Tablets"
   },
-  "name": "Tablets"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca36"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca36"
+    },
+    "name": "Smartwatches"
   },
-  "name": "Smartwatches"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca37"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca37"
+    },
+    "name": "Earbuds & Headphones"
   },
-  "name": "Earbuds & Headphones"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca38"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca38"
+    },
+    "name": "Cameras"
   },
-  "name": "Cameras"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca39"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca39"
+    },
+    "name": "Gaming Consoles"
   },
-  "name": "Gaming Consoles"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca3a"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca3a"
+    },
+    "name": "Accessories & Chargers"
   },
-  "name": "Accessories & Chargers"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca3b"
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca3b"
+    },
+    "name": "Home Appliances"
   },
-  "name": "Home Appliances"
-},
-{
-  "_id": {
-    "$oid": "67570edd5b59414c3bdeca3c"
-  },
-  "name": "Networking Devices"
-}]
+  {
+    "_id": {
+      "$oid": "67570edd5b59414c3bdeca3c"
+    },
+    "name": "Networking Devices"
+  }
+]

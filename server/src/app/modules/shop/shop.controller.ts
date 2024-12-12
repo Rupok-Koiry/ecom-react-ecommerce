@@ -3,7 +3,6 @@ import httpStatus from 'http-status';
 import {
   createOne,
   deleteOne,
-  getAll,
   getOne,
   updateOne,
 } from '../../utils/handlerFactory';
@@ -16,8 +15,8 @@ import AppError from '../../errors/AppError';
 export const createShop = createOne(Shop);
 
 // Get all shops
-export const getAllShop = catchAsync(async (req: Request, res: Response) => {
-  const shops = await Shop.find({
+export const getVendorShop = catchAsync(async (req: Request, res: Response) => {
+  const shops = await Shop.findOne({
     vendor: req.user.userId,
   });
 

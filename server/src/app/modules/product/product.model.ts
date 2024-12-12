@@ -8,6 +8,7 @@ const productSchema = new Schema({
   images: [{ type: String }],
   discount: { type: Number, default: 0 },
   shop: { type: Schema.Types.ObjectId, ref: 'Shop', required: true },
+  vendor: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   averageRating: { type: Number, default: 0 },
   ratingsCount: { type: Number, default: 0 },
 });

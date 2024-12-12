@@ -19,6 +19,8 @@ export function useCreateReview() {
     }) => createReview(productId, reviewData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["productReviews"] });
+
       toast.success("Review created successfully");
     },
     onError: (error) => {

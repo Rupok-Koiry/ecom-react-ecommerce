@@ -88,17 +88,13 @@ export const getAll = <T>(Model: Model<T>, popOptions?: string) =>
         .paginate();
       // POPULATE
       if (popOptions) features.query = features.query.populate(popOptions);
-      const totalCounts = await Model.countDocuments();
       const doc = await features.query;
       // SEND RESPONSE
       res.status(httpStatus.OK).json({
         success: true,
         statusCode: httpStatus.OK,
         message: `${Model.modelName} retrieved successfully`,
-        data: {
-          totalCounts,
-          doc,
-        },
+        data: doc,
       });
     } catch (error) {
       next(error);

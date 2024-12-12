@@ -4,19 +4,53 @@ import {
   updateOne,
   createOne,
   getOne,
-  getAll,
 } from '../../utils/handlerFactory';
 import httpStatus from 'http-status';
 import Product from './product.model';
 import catchAsync from '../../utils/catchAsync';
 import AppError from '../../errors/AppError';
 import Review from '../review/review.model';
+import APIFeatures from '../../utils/apiFeatures';
 
 // Controller for creating a product
 export const createProduct = createOne(Product);
 
 // Controller for getting all products
-export const getAllProducts = getAll(Product, 'shop category');
+export const getAllProducts = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // Initialize API features
+      const features = new APIFeatures(Product.find(), req.query).filter();
+
+      // Clone the query for counting documents
+      const totalCounts = await Product.countDocuments(
+        features.query.getFilter(),
+      );
+
+      // Populate and paginate data
+      features.query = features
+        .limitFields()
+        .paginate()
+        .query.populate('shop category');
+
+      // Execute the final query
+      const doc = await features.query;
+
+      // Send response
+      res.status(httpStatus.OK).json({
+        success: true,
+        statusCode: httpStatus.OK,
+        message: `${Product.modelName} retrieved successfully`,
+        data: {
+          totalCounts,
+          doc,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // Controller for getting product details
 export const getProductDetails = getOne(Product, 'shop category');

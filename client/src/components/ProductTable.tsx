@@ -9,18 +9,20 @@ import ProductModal from "./modals/ProductModal";
 import { IoDuplicate } from "react-icons/io5";
 import { useDuplicateProduct } from "../hooks/products/useDuplicateProduct";
 import ReactPaginate from "react-paginate";
+import { useUserProfile } from "../hooks/users/useUserProfile";
 
 const ProductTable = () => {
   const { deleteProduct } = useDeleteProduct();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { duplicate } = useDuplicateProduct();
-
+  const { userProfile } = useUserProfile();
   const [currentPage, setCurrentPage] = useState(0);
-  const productsPerPage = 5;
+  const productsPerPage = 10;
   const { products, error, isLoading, totalProducts } = useAllProducts({
     page: currentPage + 1,
     limit: productsPerPage,
+    vendor: userProfile._id,
   });
 
   const handlePageChange = (selectedItem: { selected: number }) => {
@@ -76,7 +78,9 @@ const ProductTable = () => {
                       : ""
                   }`}
                 >
-                  <td className="pl-4">{index + 1}</td>
+                  <td className="pl-4">
+                    {currentPage * productsPerPage + index + 1}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {product.name}
                   </td>

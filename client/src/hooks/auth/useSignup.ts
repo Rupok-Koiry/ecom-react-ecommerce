@@ -10,9 +10,13 @@ export function useSignup() {
   const { mutate: signup, isPending } = useMutation({
     mutationFn: signupApi,
     onSuccess: (user) => {
-      queryClient.setQueryData(["user"], user);
+      queryClient.setQueryData(["userProfile"], user);
       toast.success("Signup successful");
-      navigate("/");
+      if (user.role === "vendor") {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
     },
     onError: (error) => {
       toast.error(error.message);

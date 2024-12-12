@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllShops } from "../../services/apiShops";
+import { getVendorShop } from "../../services/apiShops";
 import { useSearchParams } from "react-router-dom";
 
-export function useAllShops() {
+export function useVendorShop() {
   const [searchParams] = useSearchParams();
   const queryParams = Object.fromEntries(searchParams);
   const {
     isLoading,
-    data: shops,
+    data: shop,
     error,
   } = useQuery({
     queryKey: ["allShops", queryParams],
-    queryFn: () => getAllShops(queryParams),
+    queryFn: () => getVendorShop(queryParams),
     retry: false,
   });
 
-  return { isLoading, shops, error };
+  return { isLoading, shop, error };
 }

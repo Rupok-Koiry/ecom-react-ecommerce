@@ -8,16 +8,16 @@ import {
   getShopProducts,
   getShopFollowers,
   blacklistShop,
-  getAllShop,
+  getVendorShop,
 } from './shop.controller';
 
 const router = express.Router();
 
 // Shop Routes
 router.post('/', auth('vendor'), createShop);
-router.get('/', auth('vendor'), getAllShop);
+router.get('/', auth('vendor'), getVendorShop);
 router.get('/:id', getShopDetails);
-router.patch('/:shopId', auth('vendor'), updateShop);
+router.patch('/:id', auth('vendor'), updateShop);
 router.delete('/:shopId', auth('vendor'), deleteShop);
 router.get('/:shopId/products', getShopProducts);
 router.get('/:shopId/followers', auth('vendor'), getShopFollowers);
