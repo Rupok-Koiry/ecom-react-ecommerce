@@ -1,6 +1,6 @@
-# Drive Now - Car Rental System
+# E-coom
 
-Welcome to **Drive Now**! This guide will help you set up and run both the server and client sides of the Car Rental System application locally on your machine.
+Welcome to **E-coom**! This guide will help you set up and run both the server and client sides of the E-coom E-Commerce application locally on your machine.
 
 ## Table of Contents
 
@@ -15,18 +15,20 @@ Welcome to **Drive Now**! This guide will help you set up and run both the serve
 
 ## Project Overview
 
-The Car Rental System is a web application designed to facilitate the booking and rental of cars. Users can view available cars, book them for a specific period, and return them after use. Administrators can manage the car inventory and user information.
+**E-coom** is a modern e-commerce platform designed to provide a seamless shopping experience for users, vendors, and administrators. Users can browse products, vendors can manage shops and inventories, and administrators have control over the entire platform. The system is built to be intuitive, responsive, and secure.
 
 ## Live URL
 
-Check out the live version of the application here: [Drive Now](https://apollo-assignment-05-jup2.vercel.app/)
+Check out the live version of the application here: [E-coom Live](https://your-live-url.com)
 
 ## Features
 
 - **User Authentication**: Sign up, log in, and manage user profiles.
-- **Car Management**: Retrieve, add, update, and delete car information.
-- **Booking System**: Book cars for specific periods and calculate the rental cost.
-- **Admin Panel**: Manage bookings and car inventory.
+- **Vendor Management**: Create and manage shops, add products, and track orders.
+- **Product Browsing**: Search, filter, and compare products.
+- **Cart Functionality**: Add products to the cart and proceed to checkout.
+- **Admin Control**: Manage users, vendors, products, and categories.
+- **Responsive Design**: Optimized for mobile and desktop.
 
 ## Technology Used
 
@@ -38,21 +40,18 @@ Check out the live version of the application here: [Drive Now](https://apollo-a
 - **Mongoose**
 - **JWT** for Authentication
 - **Bcrypt** for Password Hashing
-- **Zod** for Validation
-- **TypeScript**
 - **Dotenv**
 
 ### Frontend
 
 - **React**
 - **Tailwind CSS**
-- **Framer Motion** for Animations
 
 ## Prerequisites
 
 Ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/en/download/) (version 20 or higher)
+- [Node.js](https://nodejs.org/en/download/) (version 16 or higher)
 - [npm](https://www.npmjs.com/get-npm) (version 6 or higher)
 
 ## Installation
@@ -62,8 +61,8 @@ Ensure you have the following installed:
 1. **Clone the repository**:
 
    ```sh
-   git clone https://github.com/Rupok-Koiry/apollo-assignment-05
-   cd apollo-assignment-05/server
+   git clone https://github.com/yourusername/e-coom
+   cd e-coom/server
    ```
 
 2. **Install dependencies**:
@@ -95,11 +94,10 @@ Create a `.env` file in both the `server` and `client` directories and add the r
 ```env
 NODE_ENV=development
 PORT=8000
-DATABASE_URL=mongodb+srv://<user_name>:<user_password>@cluster0.etdfbfi.mongodb.net/ph-university?retryWrites=true&w=majority&appName=Cluster0
+DATABASE_URL=mongodb+srv://<user_name>:<user_password>@cluster0.mongodb.net/e-coom?retryWrites=true&w=majority
 BCRYPT_SALT_ROUNDS=12
-JWT_SECRET=rupok2024
+JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=30d
-JWT_COOKIE_EXPIRES_IN=30
 ```
 
 ### Client
@@ -131,6 +129,6 @@ cd client
 npm start
 ```
 
-The client will be accessible at http://localhost:5176.
+The client will be accessible at http://localhost:3000.
 
-Thank you for using **Drive Now**! Happy riding! 🚗💨
+Thank you for using **E-coom**! Happy shopping! 🛒
