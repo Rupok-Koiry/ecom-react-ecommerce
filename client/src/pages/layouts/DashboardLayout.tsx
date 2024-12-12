@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLogout } from "../../hooks/auth/useLogout";
 import { FaUser } from "react-icons/fa6";
 import { IoReturnUpForwardOutline } from "react-icons/io5";
-import { useMe } from "../../hooks/auth/useMe";
+import { useUserProfile } from "../../hooks/users/useUserProfile";
 
 interface NavItemProps {
   to: string;
@@ -27,7 +27,7 @@ const DashboardLayout: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 1024);
   const location = useLocation();
   const { isPending, logout } = useLogout();
-  const { user } = useMe();
+  const { userProfile } = useUserProfile();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -124,7 +124,7 @@ const DashboardLayout: React.FC = () => {
                   <NavItem to="/dashboard/manage-bookings" icon={FaCalendarAlt}>
                     Manage Bookings
                   </NavItem>
-                  {user?.role === "admin" ? (
+                  {userProfile?.role === "admin" ? (
                     <>
                       <NavItem to="/dashboard/manage-cars" icon={FaCar}>
                         Manage Cars

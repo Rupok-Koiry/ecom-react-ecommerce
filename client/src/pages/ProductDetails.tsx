@@ -76,7 +76,7 @@ const ProductDetails = () => {
     );
 
   return (
-    <div className="bg-secondary-background min-h-screen py-10">
+    <div className="bg-primary-background lg:py-14 py-10 px-5">
       {/* Product Details Section */}
       <section className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         {/* Product Images */}

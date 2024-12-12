@@ -84,18 +84,21 @@ export const getAll = <T>(Model: Model<T>, popOptions?: string) =>
       // APi features
       const features = new APIFeatures(Model.find(), req.query)
         .filter()
-        .sort()
         .limitFields()
         .paginate();
       // POPULATE
       if (popOptions) features.query = features.query.populate(popOptions);
+      const totalCounts = await Model.countDocuments();
       const doc = await features.query;
       // SEND RESPONSE
       res.status(httpStatus.OK).json({
         success: true,
         statusCode: httpStatus.OK,
         message: `${Model.modelName} retrieved successfully`,
-        data: doc,
+        data: {
+          totalCounts,
+          doc,
+        },
       });
     } catch (error) {
       next(error);

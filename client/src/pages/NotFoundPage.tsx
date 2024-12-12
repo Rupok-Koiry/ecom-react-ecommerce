@@ -8,7 +8,7 @@ const NotFoundPage = () => {
       <div className="relative">
         <Lottie animationData={notFound} loop={true} />
         <h1
-          className="text-5xl lg:text-7xl font-bold text-primary-brand absolute top-1/2 left-1/2 transform 
+          className="text-5xl lg:text-6xl font-bold text-primary-brand absolute top-1/2 left-1/2 transform 
         -translate-x-1/2 -translate-y-1/2 "
         >
           404

@@ -1,207 +1,128 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useState } from "react";
+import { useAllShops } from "../hooks/shops/useAllShops";
+import { useCreateShop } from "../hooks/shops/useCreateShop";
 import Button from "../components/Button";
-import { useMe } from "../hooks/auth/useMe";
-import { useEffect } from "react";
-import { useUpdateMe } from "../hooks/auth/useUpdateMe";
-import BookingTable from "../components/BookingTable";
-import StatsCard from "../components/StatsCard";
-import {
-  FaCar,
-  FaMoneyBillWave,
-  FaClipboardList,
-  FaHourglassHalf,
-} from "react-icons/fa";
-import { useBookings } from "../hooks/bookings/useBookings";
-import { useCars } from "../hooks/cars/useCars";
-import { BookingTypes } from "../constants/types";
+import { useUserProfile } from "../hooks/users/useUserProfile";
+import SectionTitle from "../components/SectionTitle";
 
-interface IFormInput {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
-
-const schema: yup.ObjectSchema<IFormInput> = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .email("Invalid email format")
-    .required("Email is required"),
-  phone: yup.string().required("Phone number is required"),
-  address: yup.string().required("Address is required"),
-});
-
-const Dashboard = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<IFormInput>({
-    resolver: yupResolver(schema),
+const VendorShops = () => {
+  const [shopData, setShopData] = useState({
+    name: "",
+    image: "",
+    description: "",
   });
-  const { bookings } = useBookings();
-  const { cars } = useCars();
-  const { user } = useMe();
-  const { isUpdating, updateUser } = useUpdateMe();
+  const { userProfile } = useUserProfile();
+  const { shops } = useAllShops();
+  const { create, isPending } = useCreateShop();
 
-  useEffect(() => {
-    if (!user) return;
-    reset(user);
-  }, [reset, user]);
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    updateUser(data);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setShopData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    create({ ...shopData, vendor: userProfile._id });
+
+    setShopData({ name: "", image: "", description: "" });
   };
 
   return (
-    <section className="lg:py-10 py-8">
-      {user.role === "admin" ? (
-        <div className="bg-primary-background">
-          {/* Header */}
-          <h2 className="text-2xl lg:text-3xl font-semibold text-center text-primary-text mb-8">
-            Dashboard Overview
+    <div className="bg-primary-background lg:py-14 py-10 px-5">
+      <SectionTitle title="Vendor Shops" />
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Create Shop Form */}
+        <div className="bg-primary-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-bold text-primary-text mb-6">
+            Create a Shop
           </h2>
-
-          {/* Stats Section */}
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <StatsCard
-              title="Total Bookings"
-              value={bookings?.length || 0}
-              textColor="text-info-color"
-              borderColor="border-info-color"
-              icon={<FaClipboardList size={30} />}
-            />
-            <StatsCard
-              title="Available Cars"
-              value={cars?.length || 0}
-              textColor="text-success-color"
-              borderColor="border-success-color"
-              icon={<FaCar size={30} />}
-            />
-            <StatsCard
-              title="Total Revenue"
-              value={`$${
-                bookings
-                  ?.filter(
-                    (booking: BookingTypes) => booking.status === "completed"
-                  )
-                  .reduce(
-                    (acc: number, booking: BookingTypes) =>
-                      acc + booking.totalCost,
-                    0
-                  ) || 0
-              }`}
-              textColor="text-primary-brand"
-              borderColor="border-primary-brand"
-              icon={<FaMoneyBillWave size={30} />}
-            />
-            <StatsCard
-              title="Pending Requests"
-              value={
-                bookings?.filter(
-                  (booking: BookingTypes) => booking.status === "pending"
-                ).length || 0
-              }
-              textColor="text-error-color"
-              borderColor="border-error-color"
-              icon={<FaHourglassHalf size={30} />}
-            />
-          </section>
-        </div>
-      ) : (
-        <div className="lg:grid lg:grid-cols-2 gap-8 items-center">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-4 mb-8 lg:mb-0"
-          >
-            <h2 className="text-2xl lg:text-3xl font-semibold text-center text-primary-text mb-3">
-              Profile
-            </h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-primary-text mb-2">
-                Name
+              <label className="block text-secondary-text text-sm font-medium mb-2">
+                Shop Name
               </label>
               <input
                 type="text"
-                {...register("name")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
+                name="name"
+                value={shopData.name}
+                onChange={handleChange}
+                required
+                className="w-full p-3 border border-primary-grey rounded-md focus:outline-none focus:ring-2 focus:ring-primary-brand"
+                placeholder="Enter shop name"
               />
-              {errors.name && (
-                <p className="text-error-color text-xs">
-                  {errors.name.message}
-                </p>
-              )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-primary-text mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                {...register("email")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-              />
-              {errors.email && (
-                <p className="text-error-color text-xs">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-primary-text mb-2">
-                Phone
-              </label>
-              <input
-                type="tel"
-                {...register("phone")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-              />
-              {errors.phone && (
-                <p className="text-error-color text-xs">
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-primary-text mb-2">
-                Address
+              <label className="block text-secondary-text text-sm font-medium mb-2">
+                Image URL
               </label>
               <input
                 type="text"
-                {...register("address")}
-                className="w-full mb-0.5 border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
+                name="image"
+                value={shopData.image}
+                onChange={handleChange}
+                className="w-full p-3 border border-primary-grey rounded-md focus:outline-none focus:ring-2 focus:ring-primary-brand"
+                placeholder="Enter image URL"
               />
-              {errors.address && (
-                <p className="text-error-color text-xs">
-                  {errors.address.message}
-                </p>
-              )}
             </div>
-            <Button
-              className="w-full"
-              loading={isUpdating}
-              disabled={isUpdating}
-            >
-              Submit
+            <div>
+              <label className="block text-secondary-text text-sm font-medium mb-2">
+                Description
+              </label>
+              <textarea
+                name="description"
+                value={shopData.description}
+                onChange={handleChange}
+                required
+                className="w-full p-3 border border-primary-grey rounded-md focus:outline-none focus:ring-2 focus:ring-primary-brand"
+                placeholder="Enter shop description"
+                rows={4}
+              ></textarea>
+            </div>
+            <Button loading={isPending} disabled={isPending}>
+              Create Shop
             </Button>
           </form>
-          <div>
-            <h2 className="text-2xl lg:text-3xl font-semibold text-center text-primary-text mb-5">
-              Booking History
-            </h2>
-            <BookingTable showAction={false} />
-            <Button href="/dashboard/manage-bookings" className="mt-3 w-full">
-              Manage Booking
-            </Button>
+        </div>
+
+        {/* Shops List */}
+        <div className="bg-primary-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-bold text-primary-text mb-6">
+            Your Shops
+          </h2>
+          <div className="space-y-4">
+            {shops?.map((shop: any) => (
+              <div
+                key={shop.id}
+                className="p-4 bg-secondary-background rounded-lg shadow hover:shadow-lg transition-shadow duration-200"
+              >
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={shop.image}
+                    alt={shop.name}
+                    className="w-16 h-16 object-cover rounded-md"
+                  />
+                  <div>
+                    <h3 className="text-lg font-semibold">{shop.name}</h3>
+                    <p className="text-secondary-text text-sm">
+                      {shop.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {shops?.length === 0 && (
+              <p className="text-center text-secondary-text">
+                No shops found. Create one!
+              </p>
+            )}
           </div>
         </div>
-      )}
-    </section>
+      </div>
+    </div>
   );
 };
 
-export default Dashboard;
+export default VendorShops;

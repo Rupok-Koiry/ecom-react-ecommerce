@@ -6,7 +6,7 @@ const RecentViews = () => {
   const [recentViews] = useLocalStorageState([], "recentViews");
 
   return (
-    <section className="container mx-auto  py-12">
+    <section className="container mx-auto  lg:py-14 py-10 px-5">
       <SectionTitle
         title="Recent Views"
         description={"Your recently viewed products are displayed here."}

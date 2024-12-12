@@ -30,26 +30,6 @@ export const placeOrder = catchAsync(
   },
 );
 
-// Get orders for a user
-export const getUserOrders = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const orders = await Order.find({ user: req.user.userId }).populate(
-      'products.product shop',
-    );
-
-    if (!orders || orders.length === 0) {
-      return next(new AppError(404, 'No orders found for this user'));
-    }
-
-    res.status(200).json({
-      success: true,
-      statusCode: 200,
-      message: 'User orders retrieved successfully',
-      data: orders,
-    });
-  },
-);
-
 // Get details of a specific order
 export const getOrderDetails = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -85,10 +65,38 @@ export const getOrderDetails = catchAsync(
   },
 );
 
-// Get orders for a specific vendor shop
+export const getUserOrders = catchAsync(async (req: Request, res: Response) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+  const skip = (pageNumber - 1) * limitNumber;
+
+  const orders = await Order.find({ user: req.user.userId })
+    .populate('products.product shop')
+    .skip(skip)
+    .limit(limitNumber);
+
+  const totalOrders = await Order.countDocuments({ user: req.user.userId });
+
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: 'User orders retrieved successfully',
+    data: {
+      orders,
+      totalOrders,
+    },
+  });
+});
 export const getVendorOrders = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { shopId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+
+    const pageNumber = parseInt(page as string);
+    const limitNumber = parseInt(limit as string);
+    const skip = (pageNumber - 1) * limitNumber;
 
     // Verify that the shop belongs to the vendor
     const shop = await Shop.findById(shopId);
@@ -101,19 +109,21 @@ export const getVendorOrders = catchAsync(
       );
     }
 
-    const orders = await Order.find({ shop: shopId }).populate(
-      'products.product',
-    );
+    const orders = await Order.find({ shop: shopId })
+      .populate('products.product')
+      .skip(skip)
+      .limit(limitNumber);
 
-    if (!orders || orders.length === 0) {
-      return next(new AppError(404, 'No orders found for this shop'));
-    }
+    const totalOrders = await Order.countDocuments({ shop: shopId });
 
     res.status(200).json({
       success: true,
       statusCode: 200,
       message: 'Vendor orders retrieved successfully',
-      data: orders,
+      data: {
+        orders,
+        totalOrders,
+      },
     });
   },
 );

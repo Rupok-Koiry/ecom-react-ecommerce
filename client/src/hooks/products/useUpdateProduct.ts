@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateProduct } from "../../services/apiProduct";
+import { updateProduct as updateProductApi } from "../../services/apiProduct";
 import toast from "react-hot-toast";
 
 export function useUpdateProduct() {
   const queryClient = useQueryClient();
 
   const {
-    mutate: update,
+    mutate: updateProduct,
     isPending,
     error,
   } = useMutation({
-    mutationFn: updateProduct,
+    mutationFn: updateProductApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries({ queryKey: ["productDetails"] });
@@ -21,5 +21,5 @@ export function useUpdateProduct() {
     },
   });
 
-  return { update, isPending, error };
+  return { updateProduct, isPending, error };
 }

@@ -15,7 +15,7 @@ const router = express.Router();
 
 // Shop Routes
 router.post('/', auth('vendor'), createShop);
-router.get('/', auth('admin'), getAllShop);
+router.get('/', auth('vendor'), getAllShop);
 router.get('/:id', getShopDetails);
 router.patch('/:shopId', auth('vendor'), updateShop);
 router.delete('/:shopId', auth('vendor'), deleteShop);

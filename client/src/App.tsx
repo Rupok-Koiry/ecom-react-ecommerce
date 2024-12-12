@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import About from "./pages/AboutUs";
 import RootLayout from "./pages/layouts/RootLayout";
 import ManageBookings from "./pages/ManageBookings";
-import ManageCars from "./pages/ManageCars";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./pages/layouts/DashboardLayout";
 import Login from "./pages/Login";
@@ -31,6 +30,10 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import RecentViews from "./pages/RecentViews";
+import OrderHistory from "./pages/OrderHistory";
+import VendorOrderHistory from "./pages/VendorOrderHistory";
+import Comparison from "./pages/Comparison";
+import ManageProducts from "./pages/ManageProducts";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +51,12 @@ const App = () => {
           <Route path="/" element={<RootLayout />}>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/order-history" element={<OrderHistory />} />
+            <Route path="/comparison" element={<Comparison />} />
+            <Route
+              path="/vendor-order-history/:shopId"
+              element={<VendorOrderHistory />}
+            />
             <Route path="/transaction/success" element={<PaymentSuccess />} />
             <Route path="/transaction/error" element={<PaymentError />} />
             <Route path="/cart" element={<Cart />} />
@@ -59,6 +68,59 @@ const App = () => {
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<SignUp />} />
+
+            <Route path="dashboard" element={<DashboardLayout />}>
+              <Route
+                index
+                element={
+                  <ProtectedRoute restrictTo={["vendor"]}>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="manage-products"
+                element={
+                  <ProtectedRoute restrictTo={["vendor"]}>
+                    <ManageProducts />
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route
+                path="manage-bookings"
+                element={
+                  <ProtectedRoute>
+                    <ManageBookings />
+                  </ProtectedRoute>
+                }
+              />
+              
+              <Route
+                path="manage-users"
+                element={
+                  <ProtectedRoute restrictTo={["admin"]}>
+                    <ManageUsers />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="manage-return"
+                element={
+                  <ProtectedRoute restrictTo={["admin"]}>
+                    <ManageReturn />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="manage-payment"
+                element={
+                  <ProtectedRoute restrictTo={["user"]}>
+                    <ManagePayment />
+                  </ProtectedRoute>
+                }
+              /> */}
+            </Route>
+
             {/* Catch-all route for 404 - Page Not Found */}
             <Route path="*" element={<NotFoundPage />} />
           </Route>

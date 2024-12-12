@@ -16,7 +16,18 @@ import AppError from '../../errors/AppError';
 export const createShop = createOne(Shop);
 
 // Get all shops
-export const getAllShop = getAll(Shop);
+export const getAllShop = catchAsync(async (req: Request, res: Response) => {
+  const shops = await Shop.find({
+    vendor: req.user.userId,
+  });
+
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Shops retrieved successfully',
+    data: shops,
+  });
+});
 
 // Get shop details
 export const getShopDetails = getOne(Shop, 'vendor');

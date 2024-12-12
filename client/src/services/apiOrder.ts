@@ -12,9 +12,11 @@ export async function placeOrder(orderData: {
   return response.data.data;
 }
 
-// Get orders for the current user
-export async function getUserOrders() {
-  const response = await handleApiRequest(api.get("/orders"));
+// Get orders for a specific vendor shop
+export async function getUserOrders(page?: number, limit?: number) {
+  const response = await handleApiRequest(
+    api.get(`/orders?page=${page}&limit=${limit}`)
+  );
   return response.data.data;
 }
 
@@ -25,7 +27,13 @@ export async function getOrderDetails(orderId: string) {
 }
 
 // Get orders for a specific vendor shop
-export async function getVendorOrders(shopId: string) {
-  const response = await handleApiRequest(api.get(`/orders/vendor/${shopId}`));
+export async function getVendorOrders(
+  shopId: string,
+  page?: number,
+  limit?: number
+) {
+  const response = await handleApiRequest(
+    api.get(`/orders/vendor/${shopId}?page=${page}&limit=${limit}`)
+  );
   return response.data.data;
 }

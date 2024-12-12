@@ -74,14 +74,14 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/about"
+                  to="/comparison"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary-brand transition duration-300 font-medium"
                       : "hover:text-primary-brand transition duration-300 font-medium"
                   }
                 >
-                  About Us
+                  comparison{" "}
                 </NavLink>
               </li>
               <li>

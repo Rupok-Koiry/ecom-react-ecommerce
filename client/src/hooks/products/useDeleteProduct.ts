@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteProduct } from "../../services/apiProduct";
+import { deleteProduct as deleteProductApi } from "../../services/apiProduct";
 import toast from "react-hot-toast";
 
 export function useDeleteProduct() {
   const queryClient = useQueryClient();
 
   const {
-    mutate: deleteMutation,
+    mutate: deleteProduct,
     isPending,
     error,
   } = useMutation({
-    mutationFn: deleteProduct,
+    mutationFn: deleteProductApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("Product deleted successfully");
@@ -20,5 +20,5 @@ export function useDeleteProduct() {
     },
   });
 
-  return { deleteMutation, isPending, error };
+  return { deleteProduct, isPending, error };
 }

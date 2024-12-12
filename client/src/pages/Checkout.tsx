@@ -27,8 +27,8 @@ const Checkout = () => {
   };
 
   return (
-    <section className="flex items-center justify-center py-12 px-5">
-      <div className="w-full max-w-xl p-6 lg:p-8 bg-primary-white shadow-lg rounded-xl">
+    <section className="flex items-center justify-center lg:py-14 py-12 px-5">
+      <div className="w-full max-w-3xl p-6 lg:p-8 bg-primary-white shadow-lg rounded-xl">
         <SectionTitle
           title="Checkout"
           description="Apply coupon codes for discounts during checkout."
@@ -46,32 +46,37 @@ const Checkout = () => {
                   key={index}
                   className="flex justify-between text-primary-text"
                 >
-                  <span>{item.name}</span>
-                  <span>{item.price}</span>
+                  <div className="flex gap-2">
+                    <span>{item.name}</span>
+                    <span>
+                      ${item.price}X{item.quantity}
+                    </span>
+                  </div>
+                  <span>${item.price * item.quantity}</span>
                 </li>
               ))}
             </ul>
 
             <li className="flex justify-between font-bold text-primary-text">
               <span>Total</span>
-              <span>{totalPrice}</span>
+              <span>${totalPrice}</span>
             </li>
           </ul>
           <div className="mt-6">
             <label htmlFor="coupon" className="block text-secondary-text mb-2">
               Coupon Code
             </label>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row gap-2">
               <input
                 type="text"
                 id="coupon"
-                className="flex-1 p-3 border border-primary-grey rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-brand"
+                className="flex-1 px-3 py-2 border border-primary-grey rounded-lg  focus:outline-none focus:ring-2 focus:ring-primary-brand"
                 placeholder="Enter coupon code"
                 value={coupon}
                 onChange={(e) => setCoupon(e.target.value)}
               />
               <button
-                className="bg-primary-brand hover:bg-primary-brand-dark text-primary-white px-4 rounded-r-lg transition-colors"
+                className="bg-primary-brand hover:bg-primary-brand-dark text-primary-white px-3 py-1.5 rounded-lg  transition-colors"
                 onClick={handleApplyCoupon}
               >
                 Apply
@@ -86,8 +91,11 @@ const Checkout = () => {
           className="w-full my-5"
           onClick={() =>
             handlePayment({
-              productIds: items.map((item) => item._id),
-              amount: totalPrice,
+              products: items.map((item) => ({
+                product: item._id,
+                quantity: item.quantity,
+              })),
+              totalPrice: totalPrice,
               shopId: items[0].shop._id,
             })
           }

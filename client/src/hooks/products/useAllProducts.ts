@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "../../services/apiProduct";
-import { useSearchParams } from "react-router-dom";
 
-export function useAllProducts(filters: any) {
+export function useAllProducts(filters?: any) {
   const {
     isLoading,
-    data: products,
+    data: { doc: products = [], totalCounts: totalProducts = 0 } = {},
     error,
   } = useQuery({
     queryKey: ["products", filters],
@@ -14,5 +13,5 @@ export function useAllProducts(filters: any) {
     retry: false,
   });
 
-  return { isLoading, products, error };
+  return { isLoading, products, totalProducts, error };
 }

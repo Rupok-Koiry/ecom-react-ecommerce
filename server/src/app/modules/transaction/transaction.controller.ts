@@ -1,24 +1,22 @@
-import { getAll, getOne } from '../../utils/handlerFactory';
-import Transaction from './transaction.model';
-
 import httpStatus from 'http-status';
 import SSLCommerzPayment from 'sslcommerz-lts';
 import catchAsync from '../../utils/catchAsync';
 import User from '../user/user.model';
 import AppError from '../../errors/AppError';
+import Order from '../order/order.model';
 
 const store_id = process.env.STORE_ID;
 const store_passwd = process.env.STORE_PASSWORD;
 const is_live = false;
 
 export const initTransaction = catchAsync(async (req, res, next) => {
-  const { productIds, shopId, amount } = req.body;
+  const { products, shopId, totalPrice } = req.body;
 
   const user = await User.findById(req.user.userId);
   if (!user) return next(new AppError(httpStatus.NOT_FOUND, `User not found`));
   const transactionId = `TXN${Date.now()}`;
   const data = {
-    total_amount: Number(amount),
+    total_amount: Number(totalPrice),
     currency: 'BDT',
     tran_id: transactionId,
     success_url: `${process.env.API_URL}/transactions/success/${transactionId}`,
@@ -53,12 +51,12 @@ export const initTransaction = catchAsync(async (req, res, next) => {
     is_live,
   );
   // Save initial transaction in the database as "Pending"
-  await Transaction.create({
+  await Order.create({
     user: req.user.userId,
-    products: productIds,
+    products,
     shop: shopId,
     tran_id: transactionId,
-    amount: data.total_amount,
+    totalPrice,
     status: 'pending',
   });
 
@@ -76,7 +74,7 @@ export const initTransaction = catchAsync(async (req, res, next) => {
 
 export const transactionSuccess = catchAsync(async (req, res) => {
   const { transactionId } = req.params;
-  await await Transaction.findOneAndUpdate(
+  await await Order.findOneAndUpdate(
     { tran_id: transactionId },
     { status: 'success' },
   );
@@ -86,12 +84,9 @@ export const transactionSuccess = catchAsync(async (req, res) => {
 
 export const transactionError = catchAsync(async (req, res) => {
   const { transactionId } = req.params;
-  await Transaction.findOneAndUpdate(
+  await Order.findOneAndUpdate(
     { tran_id: transactionId },
     { status: 'failed' },
   );
   res.redirect(`${process.env.CLIENT_URL}/transaction/error`);
 });
-
-export const getAllTransactions = getAll(Transaction);
-export const getTransactionDetails = getOne(Transaction);

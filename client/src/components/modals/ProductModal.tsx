@@ -5,36 +5,32 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import { IoMdCloudUpload } from "react-icons/io";
-import { useCreateCar } from "../../hooks/cars/useCreateCar";
-import { useUpdateCar } from "../../hooks/cars/useUpdateCar";
-import { CarTypes } from "../../constants/types";
 import Button from "../Button";
-
-interface CarModalProps {
-  modalIsOpen: boolean;
-  setModalIsOpen: (value: boolean) => void;
-  car: CarTypes | null;
-}
+import { useUpdateProduct } from "../../hooks/products/useUpdateProduct";
+import { useCreateProduct } from "../../hooks/products/useCreateProduct";
+import { useAllShops } from "../../hooks/shops/useAllShops";
+import { useAllCategories } from "../../hooks/categories/useAllCategories";
 
 interface FormData {
   name: string;
-  pricePerHour: number;
   description: string;
-  color: string;
-  type: string;
-  status: "available" | "unavailable";
-  features: string;
+  price: number;
+  category: string;
+  shop: string;
   images: string[];
+  discount: number;
 }
 
-const CarModal: React.FC<CarModalProps> = ({
+const ProductModal: React.FC<any> = ({
   modalIsOpen,
   setModalIsOpen,
-  car,
+  product,
 }) => {
-  const { updateCar } = useUpdateCar();
-  const { createCar } = useCreateCar();
+  const { updateProduct } = useUpdateProduct();
+  const { createProduct } = useCreateProduct();
+  const { shops } = useAllShops();
+  const { categories } = useAllCategories();
+
   const {
     register,
     handleSubmit,
@@ -45,66 +41,58 @@ const CarModal: React.FC<CarModalProps> = ({
   } = useForm<FormData>({
     defaultValues: {
       name: "",
-      pricePerHour: 0,
       description: "",
-      color: "",
-      type: "",
-      status: "available",
-      features: "",
+      price: 0,
+      category: "",
+      shop: "",
       images: [],
+      discount: 0,
     },
   });
 
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
   useEffect(() => {
-    if (car) {
+    if (product) {
       reset({
-        name: car.name,
-        pricePerHour: car.pricePerHour,
-        description: car.description,
-        color: car.color,
-        type: car.type,
-        status: car.status,
-        features: car.features.join(", "),
-        images: car.images,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        category: product.category._id,
+        shop: product.shop._id,
+        images: product.images,
+        discount: product.discount,
       });
-      setUploadedImages(car.images);
+      setUploadedImages(product.images);
     } else {
       reset({
         name: "",
-        pricePerHour: 0,
         description: "",
-        color: "",
-        type: "",
-        status: "available",
-        features: "",
+        price: 0,
+        category: "",
+        shop: "",
         images: [],
+        discount: 0,
       });
       setUploadedImages([]);
     }
-  }, [car, reset]);
+  }, [product, reset]);
 
-  const onSubmit = (newCar: FormData) => {
+  const onSubmit = (newProduct: FormData) => {
     clearErrors("images");
-    const features = newCar.features
-      .split(", ")
-      .map((f) => f.toLowerCase().trim().split(" ").join("-"));
-    newCar.pricePerHour = Number(newCar.pricePerHour);
-    newCar.images = uploadedImages;
-    if (car) {
-      updateCar({
-        newCar: {
-          ...newCar,
-          features,
-        },
-        carId: car?._id,
+    newProduct.images = uploadedImages;
+    if (product) {
+      updateProduct({
+        updatedProduct: newProduct,
+        productId: product?._id,
       });
     } else {
-      createCar({ ...newCar, features });
+      createProduct(newProduct);
     }
     closeModal();
   };
@@ -146,7 +134,7 @@ const CarModal: React.FC<CarModalProps> = ({
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          contentLabel="Car Details"
+          contentLabel="Product Details"
           className="container z-50 mx-5"
           overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20"
         >
@@ -164,7 +152,7 @@ const CarModal: React.FC<CarModalProps> = ({
               <RxCross2 />
             </button>
             <h2 className="text-2xl font-semibold text-primary-text mb-4 text-center">
-              {car ? "Edit Car" : "Add New Car"}
+              {product ? "Edit Product" : "Add New Product"}
             </h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
@@ -175,7 +163,7 @@ const CarModal: React.FC<CarModalProps> = ({
                   type="text"
                   {...register("name", { required: "Name is required" })}
                   className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                  placeholder="Enter car name"
+                  placeholder="Enter product name"
                 />
                 {errors.name && (
                   <p className="text-error-color text-sm">
@@ -183,22 +171,7 @@ const CarModal: React.FC<CarModalProps> = ({
                   </p>
                 )}
               </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-primary-text mb-2">
-                  Price Per Hour
-                </label>
-                <input
-                  type="text"
-                  {...register("pricePerHour")}
-                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                  placeholder="Enter price per hour"
-                />
-                {errors.pricePerHour && (
-                  <p className="text-error-color text-sm">
-                    {errors.pricePerHour.message}
-                  </p>
-                )}
-              </div>
+
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-primary-text mb-2">
                   Description
@@ -208,7 +181,7 @@ const CarModal: React.FC<CarModalProps> = ({
                     required: "Description is required",
                   })}
                   className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                  placeholder="Enter car description"
+                  placeholder="Enter product description"
                   rows={3}
                 />
                 {errors.description && (
@@ -217,68 +190,86 @@ const CarModal: React.FC<CarModalProps> = ({
                   </p>
                 )}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-primary-text mb-2">
-                    Color
-                  </label>
-                  <input
-                    type="text"
-                    {...register("color", { required: "Color is required" })}
-                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                    placeholder="Enter car color"
-                  />
-                  {errors.color && (
-                    <p className="text-error-color text-sm">
-                      {errors.color.message}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-primary-text mb-2">
-                    Type
-                  </label>
-                  <input
-                    type="text"
-                    {...register("type", { required: "Type is required" })}
-                    className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                    placeholder="Enter car type"
-                  />
-                  {errors.type && (
-                    <p className="text-error-color text-sm">
-                      {errors.type.message}
-                    </p>
-                  )}
-                </div>
-              </div>
+
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-primary-text mb-2">
-                  Status
+                  Price
                 </label>
-                <select
-                  {...register("status", { required: "Status is required" })}
+                <input
+                  type="number"
+                  {...register("price", { required: "Price is required" })}
                   className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                >
-                  <option value="available">Available</option>
-                  <option value="unavailable">Unavailable</option>
-                </select>
-                {errors.status && (
+                  placeholder="Enter product price"
+                />
+                {errors.price && (
                   <p className="text-error-color text-sm">
-                    {errors.status.message}
+                    {errors.price.message}
                   </p>
                 )}
               </div>
+
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-primary-text mb-2">
-                  Features (comma-separated)
+                  Category
+                </label>
+
+                <select
+                  {...register("category", {
+                    required: "Category is required",
+                  })}
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((category: any) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.category && (
+                  <p className="text-error-color text-sm">
+                    {errors.category.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-primary-text mb-2">
+                  Shop
+                </label>
+
+                <select
+                  {...register("shop", {
+                    required: "shop is required",
+                  })}
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
+                >
+                  <option value="">Select Shop</option>
+                  {shops.map((shop: any) => (
+                    <option key={shop._id} value={shop._id}>
+                      {shop.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.shop && (
+                  <p className="text-error-color text-sm">
+                    {errors.shop.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-primary-text mb-2">
+                  Discount
                 </label>
                 <input
-                  type="text"
-                  {...register("features")}
+                  type="number"
+                  {...register("discount")}
                   className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
-                  placeholder="Enter car features (e.g. GPS, Child Seat, Insurance)"
+                  placeholder="Enter discount percentage"
                 />
               </div>
+
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-primary-text mb-2">
                   Images
@@ -311,10 +302,10 @@ const CarModal: React.FC<CarModalProps> = ({
                         >
                           <input {...getInputProps()} />
                           <div className="flex justify-center text-4xl">
-                            <IoMdCloudUpload className="text-primary-brand" />
+                            {/* <IoMdCloudUpload className="text-primary-brand" /> */}
                           </div>
                           <p className="text-secondary-text text-center">
-                            Upload relevant images of the car
+                            Upload product images
                           </p>
                           {loading && (
                             <p className="text-primary-text text-center">
@@ -350,8 +341,9 @@ const CarModal: React.FC<CarModalProps> = ({
                   ))}
                 </div>
               </div>
+
               <Button className="w-full" disabled={loading} loading={loading}>
-                {car ? "Update Car" : "Add Car"}
+                {product ? "Update Product" : "Add Product"}
               </Button>
             </form>
           </motion.div>
@@ -361,4 +353,4 @@ const CarModal: React.FC<CarModalProps> = ({
   );
 };
 
-export default CarModal;
+export default ProductModal;
