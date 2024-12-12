@@ -9,7 +9,7 @@ export function useResetPassword() {
     mutationFn: resetPasswordApi,
     onSuccess: () => {
       toast.success("Your password has been reset successfully.");
-      navigate("/sign-in");
+      navigate("/login");
     },
     onError: () => {
       toast.error("Token is invalid or has expired. Please try again.");
