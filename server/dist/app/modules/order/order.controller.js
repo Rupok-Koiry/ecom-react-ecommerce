@@ -64,7 +64,7 @@ exports.getOrderDetails = (0, catchAsync_1.default)((req, res, next) => __awaite
 }));
 exports.getAllOrders = (0, handlerFactory_1.getAll)(order_model_1.default, 'user shop');
 exports.getUserOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 100 } = req.query;
     const pageNumber = parseInt(page, 10);
     const limitNumber = parseInt(limit, 10);
     const skip = (pageNumber - 1) * limitNumber;
@@ -85,7 +85,7 @@ exports.getUserOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
 }));
 exports.getVendorOrders = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { shopId } = req.params;
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 100 } = req.query;
     const pageNumber = parseInt(page);
     const limitNumber = parseInt(limit);
     const skip = (pageNumber - 1) * limitNumber;

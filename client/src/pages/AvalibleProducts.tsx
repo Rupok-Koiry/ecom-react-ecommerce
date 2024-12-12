@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 const AvailableProducts = () => {
   const [filters, setFilters] = useState({
     keyword: "",
-    priceRange: [0, 1000],
+    priceRange: [0, 5000],
     category: "",
   });
   const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -102,7 +102,7 @@ const AvailableProducts = () => {
             className="flex-1 p-3 border rounded-md shadow focus:ring focus:ring-primary"
           >
             <option value="">All Categories</option>
-            {categories.map((category: any) => (
+            {categories?.map((category: any) => (
               <option key={category.id} value={category.name}>
                 {category.name}
               </option>
@@ -116,7 +116,7 @@ const AvailableProducts = () => {
               type="range"
               name="priceRange"
               min="0"
-              max="1000"
+              max="5000"
               value={filters.priceRange[1]}
               onChange={(e) =>
                 setFilters({
@@ -133,6 +133,7 @@ const AvailableProducts = () => {
           dataLength={displayedProducts.length}
           next={loadMoreProducts}
           hasMore={hasMore}
+          scrollThreshold={0.5}
           loader={<Spinner />}
           endMessage={
             <p className="text-center text-gray-500 mt-4">

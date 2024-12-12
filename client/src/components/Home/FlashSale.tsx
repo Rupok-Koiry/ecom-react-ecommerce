@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import SectionTitle from "../SectionTitle";
 import { useAllProducts } from "../../hooks/products/useAllProducts";
+import AddToCartButton from "../AddToCartButton";
+import CompareButton from "../CompareButton";
 
 const FlashSale = () => {
   const navigate = useNavigate();
@@ -41,6 +43,10 @@ const FlashSale = () => {
             <p className="text-success-color font-semibold mb-4 font-playwrite text-lg">
               ${product.price}
             </p>
+            <div className="flex justify-between gap-3">
+              <AddToCartButton product={product} />
+              <CompareButton product={product} />
+            </div>
           </div>
         ))}
       </div>

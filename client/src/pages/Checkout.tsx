@@ -21,6 +21,7 @@ const Checkout = () => {
   const handleApplyCoupon = () => {
     if (coupon === "GET20") {
       dispatch(applyCoupon(coupon));
+      toast.success("Coupon applied successfully!");
     } else {
       toast.error("Invalid or already applied coupon!");
     }

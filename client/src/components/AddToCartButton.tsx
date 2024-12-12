@@ -12,8 +12,7 @@ const AddToCartButton: React.FC<any> = ({ product }) => {
   const handleAddToCart = (product: any) => {
     // Check if cart items are from the same vendor
     const differentVendor =
-      cart.items.length > 0 &&
-      cart.items[0].shop.vendor !== product.shop.vendor;
+      cart.items.length > 0 && cart.items[0].vendor !== product.vendor;
 
     if (differentVendor) {
       Swal.fire({

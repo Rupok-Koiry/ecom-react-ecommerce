@@ -11,7 +11,7 @@ const ReviewTable = () => {
 
   if (error) return <ErrorMessage message={error.message} />;
   if (!reviews?.length && !isLoading)
-    return <ErrorMessage message={"No Products Found"} />;
+    return <ErrorMessage message={"No Reviews Found"} />;
 
   return (
     <div>

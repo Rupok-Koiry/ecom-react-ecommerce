@@ -41,7 +41,7 @@ export const deleteShop = deleteOne(Shop);
 export const getShopProducts = catchAsync(
   async (req: Request, res: Response) => {
     const { shopId } = req.params;
-    const { page = 1, limit = 10, ...filters } = req.query;
+    const { page = 1, limit = 100, ...filters } = req.query;
 
     const products = await Product.find({ shop: shopId, ...filters })
       .skip((+page - 1) * +limit)

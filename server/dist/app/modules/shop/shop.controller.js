@@ -53,7 +53,7 @@ exports.deleteShop = (0, handlerFactory_1.deleteOne)(shop_model_1.default);
 // Get all products for a specific shop
 exports.getShopProducts = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { shopId } = req.params;
-    const _a = req.query, { page = 1, limit = 10 } = _a, filters = __rest(_a, ["page", "limit"]);
+    const _a = req.query, { page = 1, limit = 100 } = _a, filters = __rest(_a, ["page", "limit"]);
     const products = yield product_model_1.default.find(Object.assign({ shop: shopId }, filters))
         .skip((+page - 1) * +limit)
         .limit(+limit);

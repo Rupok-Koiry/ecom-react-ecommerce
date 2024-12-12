@@ -67,7 +67,7 @@ export const getOrderDetails = catchAsync(
 );
 export const getAllOrders = getAll(Order, 'user shop');
 export const getUserOrders = catchAsync(async (req: Request, res: Response) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 100 } = req.query;
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
@@ -93,7 +93,7 @@ export const getUserOrders = catchAsync(async (req: Request, res: Response) => {
 export const getVendorOrders = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { shopId } = req.params;
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 100 } = req.query;
 
     const pageNumber = parseInt(page as string);
     const limitNumber = parseInt(limit as string);

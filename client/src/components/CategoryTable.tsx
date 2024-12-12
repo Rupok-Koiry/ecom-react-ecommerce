@@ -46,7 +46,7 @@ const CategoryTable = () => {
               </tr>
             </thead>
             <tbody className="bg-primary-background">
-              {categories.map((cat: any, index: number) => (
+              {categories?.map((cat: any, index: number) => (
                 <tr
                   key={cat._id}
                   className={`${

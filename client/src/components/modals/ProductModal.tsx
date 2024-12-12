@@ -94,7 +94,10 @@ const ProductModal: React.FC<any> = ({
         productId: product?._id,
       });
     } else {
-      createProduct(newProduct);
+      createProduct({
+        ...newProduct,
+        vendor: shop.vendor,
+      });
     }
     closeModal();
   };

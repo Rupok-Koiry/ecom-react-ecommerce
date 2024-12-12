@@ -66,7 +66,7 @@ const VendorShops = () => {
 
   return (
     <div className="bg-primary-background lg:py-14 py-10 px-5">
-      {userProfile ? (
+      {userProfile.role === "admin" ? (
         <div className="bg-primary-background">
           {/* Header */}
           <SectionTitle title="Dashboard Overview" />
@@ -153,7 +153,7 @@ const VendorShops = () => {
                 loading={isCreatePending || isUpdatePending}
                 disabled={isCreatePending || isUpdatePending}
               >
-                {shop ? "Create" : "Update"}
+                {shop ? "Update" : "Create"}
                 Shop
               </Button>
             </form>

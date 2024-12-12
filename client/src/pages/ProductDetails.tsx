@@ -27,7 +27,7 @@ const ProductDetails = () => {
     isLoading: productsLoading,
   } = useAllProducts({
     category: product?.category._id,
-    limit: 3,
+    limit: 4,
   });
   const {
     reviews,
@@ -160,25 +160,27 @@ const ProductDetails = () => {
           description="Explore similar items from the same category."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products?.map((relatedProduct: any) => (
-            <Link
-              to={`/products/${relatedProduct._id}`}
-              key={relatedProduct._id}
-              className="bg-primary-background p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-            >
-              <img
-                src={relatedProduct.images[0]}
-                alt={relatedProduct.name}
-                className="w-full h-52 object-contain rounded-lg mb-4 bg-[rgba(109,123,255,0.2)]"
-              />
-              <h3 className="text-lg font-bold text-primary-text mb-2">
-                {relatedProduct.name}
-              </h3>
-              <p className="text-success-color font-semibold mb-4 text-lg  font-playwrite">
-                ${relatedProduct.price}
-              </p>
-            </Link>
-          ))}
+          {products
+            ?.filter((p: any) => p._id !== product._id)
+            .map((relatedProduct: any) => (
+              <Link
+                to={`/products/${relatedProduct._id}`}
+                key={relatedProduct._id}
+                className="bg-primary-background p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              >
+                <img
+                  src={relatedProduct.images[0]}
+                  alt={relatedProduct.name}
+                  className="w-full h-52 object-contain rounded-lg mb-4 bg-[rgba(109,123,255,0.2)]"
+                />
+                <h3 className="text-lg font-bold text-primary-text mb-2">
+                  {relatedProduct.name}
+                </h3>
+                <p className="text-success-color font-semibold mb-4 text-lg  font-playwrite">
+                  ${relatedProduct.price}
+                </p>
+              </Link>
+            ))}
         </div>
       </section>
       <hr className="border-t border-primary-brand container mx-auto my-14 lg:my-10" />
