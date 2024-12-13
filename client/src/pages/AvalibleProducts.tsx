@@ -28,10 +28,13 @@ const AvailableProducts = () => {
   useEffect(() => {
     if (products) {
       const followedShopProducts = products.filter((product: any) =>
-        userProfile?.followedShops?.includes(product.shop)
+        userProfile?.followedShops?.includes(product.shop?._id)
       );
+      console.log(products);
+
       const otherProducts = products.filter(
-        (product: any) => !userProfile?.followedShops?.includes(product.shop)
+        (product: any) =>
+          !userProfile?.followedShops?.includes(product.shop?._id)
       );
 
       const prioritizedProducts = [...followedShopProducts, ...otherProducts];

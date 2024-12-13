@@ -2,16 +2,26 @@ import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
 import ReactPaginate from "react-paginate";
 import { useUserOrders } from "../hooks/orders/useUserOrders";
+import Spinner from "../components/Spinner";
 
 const VendorOrderHistory = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const ordersPerPage = 10;
-  const { orders, totalOrders } = useUserOrders(currentPage + 1, ordersPerPage);
+  const { orders, totalOrders, error, isLoading } = useUserOrders(
+    currentPage + 1,
+    ordersPerPage
+  );
 
   const handlePageChange = (selectedItem: { selected: number }) => {
     setCurrentPage(selectedItem.selected);
   };
-
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <h2 className="text-center text-2xl font-bold text-error-color">
+        {error?.message}
+      </h2>
+    );
   return (
     <div className="bg-primary-background py-10 lg:py-14 px-5">
       <SectionTitle title="Order History" />

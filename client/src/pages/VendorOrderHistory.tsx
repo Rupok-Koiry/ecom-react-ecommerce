@@ -3,12 +3,13 @@ import { useParams } from "react-router";
 import SectionTitle from "../components/SectionTitle";
 import { useVendorOrders } from "../hooks/orders/useVendorOrders";
 import ReactPaginate from "react-paginate";
+import Spinner from "../components/Spinner";
 
 const VendorOrderHistory = () => {
   const { shopId } = useParams();
   const [currentPage, setCurrentPage] = useState(0);
   const ordersPerPage = 10;
-  const { orders, totalOrders } = useVendorOrders(
+  const { orders, totalOrders, isLoading, error } = useVendorOrders(
     shopId as string,
     currentPage + 1,
     ordersPerPage
@@ -17,6 +18,13 @@ const VendorOrderHistory = () => {
   const handlePageChange = (selectedItem: { selected: number }) => {
     setCurrentPage(selectedItem.selected);
   };
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <h2 className="text-center text-2xl font-bold text-error-color">
+        {error?.message}
+      </h2>
+    );
 
   return (
     <section className="py-8 lg:py-10">
