@@ -112,10 +112,10 @@ const Shop = () => {
                 <h3 className="text-lg font-bold text-primary-text mb-2">
                   {product.name}
                 </h3>
+                <p className="text-success-color font-semibold mb-4 font-playwrite text-lg">
+                  ${product.price}
+                </p>
               </Link>
-              <p className="text-success-color font-semibold mb-4 font-playwrite text-lg">
-                ${product.price}
-              </p>
 
               <div className="flex justify-between gap-3">
                 <AddToCartButton product={product} />

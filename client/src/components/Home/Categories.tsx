@@ -23,33 +23,42 @@ const Categories = () => {
         description="Discover our wide selection of electronics, from the latest smartphones and laptops to high-quality earbuds and smartwatches, all categorized to suit your tech needs and preferences."
         className="text-center"
       />
-
-      <Swiper
-        navigation={true}
-        modules={[Navigation]}
-        spaceBetween={30}
-        breakpoints={{
-          576: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          992: {
-            slidesPerView: 5,
-          },
-        }}
-      >
-        {categories?.map((category: any) => (
-          <SwiperSlide key={category._id}>
-            <Link to={`/products?category=${category._id}`}>
-              <p className="text-primary-text text-center text-xl size-48 flex justify-center items-center font-playwrite bg-secondary-background hover:scale-95 transition duration-300 rounded-full p-4 mb-3">
-                {category.name}
-              </p>
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="flex justify-center">
+        <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          spaceBetween={30}
+          breakpoints={{
+            576: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            992: {
+              slidesPerView: 5,
+            },
+          }}
+          className="mySwiper"
+          style={
+            {
+              "--swiper-navigation-color": "#4a6cf7",
+            } as React.CSSProperties
+          }
+        >
+          {categories.map((category: any) => (
+            <SwiperSlide key={category._id}>
+              <div className="flex justify-center items-center">
+                <Link to={`/products?category=${category._id}`}>
+                  <p className="text-primary-text text-center text-lg lg:text-xl size-40 lg:size-48 flex justify-center items-center font-playwrite bg-secondary-background hover:scale-95 transition duration-300 rounded-full p-4 mb-3">
+                    {category.name}
+                  </p>
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 };

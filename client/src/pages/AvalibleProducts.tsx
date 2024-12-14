@@ -112,7 +112,10 @@ const AvailableProducts = () => {
             ))}
           </select>
           <div className="flex flex-1 flex-col">
-            <label htmlFor="priceRange" className="text-sm font-medium">
+            <label
+              htmlFor="priceRange"
+              className="text-sm text-primary-text font-medium"
+            >
               Price: ${filters.priceRange[0]} - ${filters.priceRange[1]}
             </label>
             <input
