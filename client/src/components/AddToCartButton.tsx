@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Swal from "sweetalert2";
 import { FaCartPlus } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const AddToCartButton: React.FC<any> = ({ product }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const AddToCartButton: React.FC<any> = ({ product }) => {
       });
     } else {
       dispatch(addItem(product));
+      toast.success("Added to cart");
     }
   };
   return (
