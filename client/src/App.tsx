@@ -28,6 +28,8 @@ import Products from "./pages/Products";
 import ManageCategories from "./pages/ManageCategories";
 import ManageUsers from "./pages/ManageUsers";
 import ManageTransactions from "./pages/ManageTransactions";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,6 +55,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/products" element={<Products />} />
 

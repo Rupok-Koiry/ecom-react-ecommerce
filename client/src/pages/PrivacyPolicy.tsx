@@ -4,46 +4,47 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <div className="container bg-primary-background py-8 lg:py-10 px-5 mx-auto">
       <div className="max-w-3xl mx-auto bg-primary-white shadow-md rounded-lg p-8">
-        <h1 className="text-3xl text-primary-text font-semibold mb-6">
+        <h2 className="text-3xl text-primary-text font-semibold mb-5 font-playwrite">
           Privacy Policy
-        </h1>
+        </h2>
 
         <p className="mb-4 text-secondary-text">
           Welcome to{" "}
           <span className="font-medium">
-            Drive <span className="text-primary-brand">Now</span>
+            E-com <span className="text-primary-brand">Platform</span>
           </span>
           ! Your privacy is very important to us. This Privacy Policy outlines
           how we collect, use, and protect your personal information when you
-          use our car rental services.
+          interact with our e-commerce services.
         </p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-3 text-primary-text">
           Information We Collect
         </h2>
         <p className="mb-4 text-secondary-text">
-          We may collect the following information when you use our services:
+          We may collect the following information when you use our platform:
         </p>
         <ul className="list-disc list-inside mb-4">
           <li className="text-primary-brand">
             <span className="text-secondary-text">
               Personal Identification Information (Name, email address, phone
-              number, etc.)
+              number, shipping address, etc.)
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              Payment information (credit card details, billing address, etc.)
+              Payment details (credit card, billing address, etc.)
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              Rental history and preferences
+              Purchase history and preferences
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              Location data (if you allow us to collect it)
+              Location data (if you allow us to collect it for better shipping
+              estimates)
             </span>
           </li>
         </ul>
@@ -52,32 +53,32 @@ const PrivacyPolicy: React.FC = () => {
           How We Use Your Information
         </h2>
         <p className="mb-4 text-secondary-text">
-          We use the information we collect in the following ways:
+          We use the information we collect to:
         </p>
         <ul className="list-disc list-inside mb-4">
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              To provide and manage our car rental services
+              Process and fulfill your orders efficiently
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              To process payments and bookings
+              Provide customer support and resolve issues
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              To personalize your experience and offer customer support
+              Send you promotional offers and product updates
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              To send you promotional offers and updates
+              Improve the functionality of our website and services
             </span>
           </li>
           <li className="text-primary-brand">
             <span className="text-secondary-text">
-              To improve our website and services
+              Comply with legal obligations and fraud prevention
             </span>
           </li>
         </ul>
@@ -86,49 +87,46 @@ const PrivacyPolicy: React.FC = () => {
           Data Security
         </h2>
         <p className="mb-4 text-secondary-text">
-          We take your privacy seriously and use industry-standard security
-          measures to protect your information. However, please note that no
-          method of transmission over the internet or electronic storage is
-          completely secure.
+          We use industry-standard security measures to protect your
+          information. While we strive to safeguard your data, please note that
+          no online platform can guarantee complete security.
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
           Third-Party Disclosure
         </h2>
         <p className="mb-4 text-secondary-text">
-          We do not sell, trade, or otherwise transfer your personal information
-          to outside parties without your consent, except for trusted third
-          parties who assist us in operating our website and conducting our
-          business, as long as those parties agree to keep this information
-          confidential.
+          Your data may be shared with trusted third-party services such as
+          payment processors and shipping carriers. These partners are obligated
+          to keep your information secure and confidential.
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
-          Your Consent
+          Your Rights
         </h2>
         <p className="mb-4 text-secondary-text">
-          By using our site or services, you consent to our Privacy Policy.
+          You have the right to access, correct, or delete your personal
+          information. For any requests, please contact us.
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
           Changes to Our Privacy Policy
         </h2>
         <p className="mb-4 text-secondary-text">
-          We may update our Privacy Policy from time to time. Any changes will
-          be posted on this page.
+          We may update our Privacy Policy to reflect changes in our practices
+          or for legal reasons. Updated policies will be posted on this page.
         </p>
 
         <h2 className="text-2xl text-primary-text font-semibold mt-6 mb-3">
           Contact Us
         </h2>
         <p className="mb-4 text-secondary-text">
-          If you have any questions about our Privacy Policy, please contact us
-          at{" "}
+          For questions about our Privacy Policy, reach us at{" "}
           <a
-            href="mailto:support@drivenow.com"
+            href="mailto:support@e-com.com"
             className="text-primary-brand font-medium"
           >
-            support@drivenow.com
+            support@e-com.com
           </a>
           .
         </p>
