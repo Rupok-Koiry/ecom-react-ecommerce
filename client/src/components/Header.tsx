@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10">
+    <header className="sticky top-0 z-20">
       <nav className="bg-secondary-background navbar shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Link to="/" className="flex gap-3 items-center">
@@ -60,7 +60,7 @@ const Header = () => {
                 <AiOutlineMenu size={24} />
               )}
             </div>
-            <ul className="hidden md:flex items-center space-x-8 text-primary-text">
+            <ul className="hidden md:flex items-center space-x-5 xl:space-x-8 text-primary-text">
               <li>
                 <NavLink
                   to="/"

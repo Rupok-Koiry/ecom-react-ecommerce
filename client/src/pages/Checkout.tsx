@@ -13,10 +13,19 @@ const Checkout = () => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
   const [loading, setLoading] = useState(false);
   const handlePayment = async (formData: any) => {
-    setLoading(true);
-    const response = await api.post(`/transactions/init-transaction`, formData);
-    setLoading(false);
-    window.location.href = response.data.data;
+    if (formData.products.length === 0) return toast.error("Cart is empty!");
+    try {
+      setLoading(true);
+      const response = await api.post(
+        `/transactions/init-transaction`,
+        formData
+      );
+      setLoading(false);
+      window.location.href = response.data.data;
+    } catch (error: any) {
+      setLoading(false);
+      toast.error(error.response?.data?.message);
+    }
   };
   const handleApplyCoupon = () => {
     if (coupon === "GET20") {
@@ -97,7 +106,7 @@ const Checkout = () => {
                 quantity: item.quantity,
               })),
               totalPrice: totalPrice,
-              shopId: items[0].shop._id,
+              shopId: items[0]?.shop._id,
             })
           }
           loading={loading}

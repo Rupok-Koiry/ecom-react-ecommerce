@@ -23,6 +23,7 @@ const ProductTable = () => {
     page: currentPage + 1,
     limit: productsPerPage,
     vendor: userProfile._id,
+    sort: "-_id",
   });
 
   const handlePageChange = (selectedItem: { selected: number }) => {

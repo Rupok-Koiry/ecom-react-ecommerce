@@ -18,11 +18,13 @@ const Products = () => {
   const handlePageChange = (selectedItem: { selected: number }) => {
     setCurrentPage(selectedItem.selected);
   };
+
   const { isLoading, error, products, totalProducts } = useAllProducts({
     category,
     "discount[gt]": discountGte ? parseFloat(discountGte) : undefined,
     page: currentPage + 1,
     limit: productsPerPage,
+    sort: "-_id",
   });
 
   if (error)
@@ -39,7 +41,7 @@ const Products = () => {
       ) : (
         <section className="container mx-auto">
           <SectionTitle
-            title="Shop Products"
+            title="All Products"
             description={`Browse all products in this shop`}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

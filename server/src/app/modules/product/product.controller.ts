@@ -29,6 +29,7 @@ export const getAllProducts = catchAsync(
 
       // Populate and paginate data
       features.query = features
+        .sort()
         .limitFields()
         .paginate()
         .query.populate('shop category');

@@ -15,6 +15,7 @@ interface FormData {
   name: string;
   description: string;
   price: number;
+  inventory: number;
   category: string;
   shop: string;
   images: string[];
@@ -43,6 +44,7 @@ const ProductModal: React.FC<any> = ({
       name: "",
       description: "",
       price: 0,
+      inventory: 0,
       category: "",
       shop: "",
       images: [],
@@ -63,6 +65,7 @@ const ProductModal: React.FC<any> = ({
         name: product.name,
         description: product.description,
         price: product.price,
+        inventory: product.inventory,
         category: product.category._id,
         shop: product.shop._id,
         images: product.images,
@@ -74,6 +77,7 @@ const ProductModal: React.FC<any> = ({
         name: "",
         description: "",
         price: 0,
+        inventory: 0,
         category: "",
         shop: "",
         images: [],
@@ -209,6 +213,24 @@ const ProductModal: React.FC<any> = ({
                 {errors.price && (
                   <p className="text-error-color text-sm">
                     {errors.price.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-primary-text mb-2">
+                  Inventory
+                </label>
+                <input
+                  type="number"
+                  {...register("inventory", {
+                    required: "Inventory is required",
+                  })}
+                  className="w-full border-secondary-grey rounded-md shadow-sm focus:border-primary-brand border outline-none py-1.5 lg:py-2 px-3"
+                  placeholder="Enter product Inventory"
+                />
+                {errors.inventory && (
+                  <p className="text-error-color text-sm">
+                    {errors.inventory.message}
                   </p>
                 )}
               </div>

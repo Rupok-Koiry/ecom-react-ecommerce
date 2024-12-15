@@ -93,7 +93,7 @@ const DashboardLayout: React.FC = () => {
       <AnimatePresence>
         {(isSidebarOpen || !isMobile) && (
           <motion.aside
-            className="absolute lg:static w-64 h-[calc(100%-80px)] bg-primary-white shadow-lg overflow-auto rounded-lg"
+            className="absolute lg:static w-64 h-[calc(100%-80px)] bg-primary-white shadow-lg overflow-auto rounded-lg z-10"
             initial="closed"
             animate="open"
             exit="closed"

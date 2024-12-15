@@ -3,13 +3,22 @@ import SectionTitle from "../SectionTitle";
 import { useAllProducts } from "../../hooks/products/useAllProducts";
 import AddToCartButton from "../AddToCartButton";
 import CompareButton from "../CompareButton";
+import Spinner from "../Spinner";
 
 const FlashSale = () => {
   const navigate = useNavigate();
-  const { products } = useAllProducts({
+  const { products, error, isLoading } = useAllProducts({
     limit: 3,
     "discount[gt]": 0,
   });
+
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <h2 className="text-center text-2xl font-bold text-error-color">
+        {error.message}
+      </h2>
+    );
 
   return (
     <section className="py-10 bg-primary-background container px-5 mx-auto">

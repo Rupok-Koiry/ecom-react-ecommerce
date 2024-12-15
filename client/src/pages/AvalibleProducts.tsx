@@ -23,7 +23,9 @@ const AvailableProducts = () => {
 
   const { userProfile } = useUserProfile();
   const { categories } = useAllCategories();
-  const { products, isLoading, error } = useAllProducts();
+  const { products, isLoading, error } = useAllProducts({
+    sort: "-_id",
+  });
 
   useEffect(() => {
     if (products) {
