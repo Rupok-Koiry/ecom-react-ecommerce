@@ -48,14 +48,7 @@ const App = () => {
           <Route path="/" element={<RootLayout />}>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
-            <Route
-              path="/order-history"
-              element={
-                <ProtectedRoute restrictTo={["user", "vendor", "admin"]}>
-                  <OrderHistory />
-                </ProtectedRoute>
-              }
-            />
+
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/shops" element={<Shops />} />
@@ -73,7 +66,6 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/recent-views" element={<RecentViews />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/shops/:id" element={<Shop />} />
             <Route path="reset-password/:token" element={<ResetPassword />} />
@@ -85,7 +77,7 @@ const App = () => {
               <Route
                 index
                 element={
-                  <ProtectedRoute restrictTo={["vendor", "admin"]}>
+                  <ProtectedRoute>
                     <Dashboard />
                   </ProtectedRoute>
                 }
@@ -99,7 +91,23 @@ const App = () => {
                 }
               />
               <Route
-                path="order-history/:shopId"
+                path="recent-views"
+                element={
+                  <ProtectedRoute restrictTo={["user"]}>
+                    <RecentViews />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="user/order-history"
+                element={
+                  <ProtectedRoute restrictTo={["user"]}>
+                    <OrderHistory />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="vendor/order-history/:shopId"
                 element={
                   <ProtectedRoute restrictTo={["vendor"]}>
                     <VendorOrderHistory />

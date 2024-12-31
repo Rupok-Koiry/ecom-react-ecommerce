@@ -32,7 +32,19 @@ exports.getUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     });
 }));
 // Update the user's profile
-exports.updateUserProfile = (0, handlerFactory_1.updateOne)(user_model_1.default);
+exports.updateUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.user.userId;
+    const user = yield user_model_1.default.findByIdAndUpdate(userId, req.body, {
+        new: true,
+        runValidators: true,
+    });
+    res.status(http_status_1.default.OK).json({
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'User updated successfully',
+        data: user,
+    });
+}));
 // Follow a shop
 exports.followShop = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.user.userId;

@@ -21,6 +21,7 @@ const userSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    address: { type: String },
     phone: { type: String },
     profilePic: { type: String },
     role: { type: String, enum: ['admin', 'vendor', 'user'], default: 'user' },

@@ -125,18 +125,6 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/comparison"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary-brand transition duration-300 font-medium"
-                      : "hover:text-primary-brand transition duration-300 font-medium"
-                  }
-                >
-                  Comparison
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
                   to="/shops"
                   className={({ isActive }) =>
                     isActive
@@ -149,6 +137,19 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
+                  to="/comparison"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary-brand transition duration-300 font-medium"
+                      : "hover:text-primary-brand transition duration-300 font-medium"
+                  }
+                >
+                  Comparison
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
                   to="/cart"
                   className={({ isActive }) =>
                     isActive
@@ -159,18 +160,19 @@ const Header = () => {
                   Cart ({items.length})
                 </NavLink>
               </li>
-              {userProfile?.role === "user" && (
+
+              {userProfile ? (
                 <>
                   <li>
                     <NavLink
-                      to="/order-history"
+                      to="/dashboard"
                       className={({ isActive }) =>
                         isActive
                           ? "text-primary-brand transition duration-300 font-medium"
                           : "hover:text-primary-brand transition duration-300 font-medium"
                       }
                     >
-                      Order History
+                      Dashboard
                     </NavLink>
                   </li>
                   <li>
@@ -184,24 +186,7 @@ const Header = () => {
                     </button>
                   </li>
                 </>
-              )}
-
-              {(userProfile?.role === "vendor" ||
-                userProfile?.role === "admin") && (
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-brand transition duration-300 font-medium"
-                        : "hover:text-primary-brand transition duration-300 font-medium"
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-              )}
-              {!userProfile && (
+              ) : (
                 <li>
                   <NavLink
                     to="/login"
@@ -295,21 +280,7 @@ const Header = () => {
                   Shops
                 </NavLink>
               </motion.li>
-              {userProfile?.role === "user" && (
-                <motion.li variants={itemVariants}>
-                  <NavLink
-                    to="/order-history"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-brand transition duration-300 block"
-                        : "hover:text-primary-brand transition duration-300 block"
-                    }
-                    onClick={toggleMenu}
-                  >
-                    Order History
-                  </NavLink>
-                </motion.li>
-              )}
+
               <motion.li variants={itemVariants}>
                 <NavLink
                   to="/comparison"
@@ -323,19 +294,7 @@ const Header = () => {
                   Comparison
                 </NavLink>
               </motion.li>
-              <motion.li variants={itemVariants}>
-                <NavLink
-                  to="/recent-views"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary-brand transition duration-300 block"
-                      : "hover:text-primary-brand transition duration-300 block"
-                  }
-                  onClick={toggleMenu}
-                >
-                  Recent Views
-                </NavLink>
-              </motion.li>
+
               <motion.li variants={itemVariants}>
                 <NavLink
                   to="/cart"
@@ -349,22 +308,33 @@ const Header = () => {
                   Cart ({items.length})
                 </NavLink>
               </motion.li>
-              {userProfile?.role === "vendor" && (
-                <motion.li variants={itemVariants}>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-brand transition duration-300 block"
-                        : "hover:text-primary-brand transition duration-300 block"
-                    }
-                    onClick={toggleMenu}
-                  >
-                    Dashboard
-                  </NavLink>
-                </motion.li>
-              )}
-              {!userProfile && (
+              {userProfile ? (
+                <>
+                  <motion.li variants={itemVariants}>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-primary-brand transition duration-300 block"
+                          : "hover:text-primary-brand transition duration-300 block"
+                      }
+                      onClick={toggleMenu}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </motion.li>
+                  <motion.li variants={itemVariants}>
+                    <button
+                      onClick={() => logout()}
+                      className={
+                        "text-primary-brand transition duration-300 font-medium"
+                      }
+                    >
+                      Logout
+                    </button>
+                  </motion.li>
+                </>
+              ) : (
                 <>
                   <motion.li variants={itemVariants}>
                     <NavLink

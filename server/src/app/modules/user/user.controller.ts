@@ -5,7 +5,7 @@ import Shop from '../shop/shop.model';
 import { Types } from 'mongoose';
 import catchAsync from '../../utils/catchAsync';
 import AppError from '../../errors/AppError';
-import { deleteOne, getAll, updateOne } from '../../utils/handlerFactory';
+import { deleteOne, getAll } from '../../utils/handlerFactory';
 
 // Get the user's profile
 export const getUserProfile = catchAsync(async (req, res) => {
@@ -20,7 +20,19 @@ export const getUserProfile = catchAsync(async (req, res) => {
 });
 
 // Update the user's profile
-export const updateUserProfile = updateOne(User);
+export const updateUserProfile = catchAsync(async (req, res) => {
+  const userId = req.user.userId;
+  const user = await User.findByIdAndUpdate(userId, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'User updated successfully',
+    data: user,
+  });
+});
 
 // Follow a shop
 export const followShop = catchAsync(

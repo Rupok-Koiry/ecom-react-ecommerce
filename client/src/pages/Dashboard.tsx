@@ -13,7 +13,14 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa6";
 import api from "../services/api";
-
+import { useUpdateUserProfile } from "../hooks/users/useUpdateUserProfile";
+import { useForm } from "react-hook-form";
+interface ProfileFormData {
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+}
 const VendorShops = () => {
   const [shopData, setShopData] = useState({
     name: "",
@@ -24,13 +31,26 @@ const VendorShops = () => {
   const { shop } = useVendorShop();
   const { create, isPending: isCreatePending } = useCreateShop();
   const { update, isPending: isUpdatePending } = useUpdateShop();
-
+  const { updateUser, isPending: isUserUpdating } = useUpdateUserProfile();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ProfileFormData>();
+  const onSubmitProfile = (formData: any) => {
+    updateUser(formData);
+  };
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setShopData((prev) => ({ ...prev, [name]: value }));
   };
+  useEffect(() => {
+    if (!userProfile) return;
+    reset(userProfile);
+  }, [reset, userProfile]);
   useEffect(() => {
     if (shop) {
       setShopData({
@@ -41,7 +61,7 @@ const VendorShops = () => {
     }
   }, [shop]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleVendorSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (shop) {
       update({
@@ -102,12 +122,12 @@ const VendorShops = () => {
             />
           </section>
         </div>
-      ) : (
+      ) : userProfile.role === "vendor" ? (
         <div className="mx-auto">
-          <SectionTitle title={shop ? "Create Shop" : "Update Shop"} />
+          <SectionTitle title={shop ? "Update Shop" : "Create Shop"} />
           {/* Create Shop Form */}
           <div className="bg-primary-white p-6 rounded-lg shadow-md">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleVendorSubmit} className="space-y-5">
               <div>
                 <label className="block text-secondary-text text-sm font-medium mb-2">
                   Shop Name
@@ -153,11 +173,68 @@ const VendorShops = () => {
                 loading={isCreatePending || isUpdatePending}
                 disabled={isCreatePending || isUpdatePending}
               >
-                {shop ? "Update" : "Create"}
+                {shop ? "Update " : "Create "}
                 Shop
               </Button>
             </form>
           </div>
+        </div>
+      ) : (
+        <div className="p-6 bg-white rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold text-secondary-text mb-6">
+            Profile Information
+          </h2>
+          <form onSubmit={handleSubmit(onSubmitProfile)} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-primary-text mb-2">
+                Name
+              </label>
+              <input
+                {...register("name", { required: "Name is required" })}
+                className="w-full rounded-md shadow-sm border py-2 px-3"
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs">{errors.name.message}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-primary-text mb-2">
+                Name
+              </label>
+              <input
+                value={userProfile.email}
+                disabled
+                className="w-full rounded-md shadow-sm border py-2 px-3"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-primary-text mb-2">
+                Phone
+              </label>
+              <input
+                {...register("phone", { required: "Phone is required" })}
+                className="w-full rounded-md shadow-sm border py-2 px-3"
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-xs">{errors.phone.message}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-primary-text mb-2">
+                Address
+              </label>
+              <input
+                {...register("address", { required: "Address is required" })}
+                className="w-full rounded-md shadow-sm border py-2 px-3"
+              />
+              {errors.address && (
+                <p className="text-red-500 text-xs">{errors.address.message}</p>
+              )}
+            </div>
+            <Button loading={isUserUpdating} disabled={isUserUpdating}>
+              Update Profile
+            </Button>
+          </form>
         </div>
       )}
     </div>

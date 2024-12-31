@@ -9,6 +9,7 @@ export interface TUser {
   role: 'admin' | 'user' | 'vendor';
   isActive: boolean;
   followedShops: string[];
+  address?: string;
   phone?: string;
   profilePic?: string;
   passwordChangedAt?: Date;
@@ -28,6 +29,7 @@ const userSchema = new Schema<TUser>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  address: { type: String },
   phone: { type: String },
   profilePic: { type: String },
   role: { type: String, enum: ['admin', 'vendor', 'user'], default: 'user' },

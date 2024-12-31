@@ -140,7 +140,7 @@ const DashboardLayout: React.FC = () => {
                         Transactions
                       </NavItem>
                     </>
-                  ) : (
+                  ) : userProfile?.role === "vendor" ? (
                     <>
                       <NavItem
                         to="/dashboard/manage-products"
@@ -156,6 +156,18 @@ const DashboardLayout: React.FC = () => {
                         icon={FaAmazonPay}
                       >
                         Order History
+                      </NavItem>
+                    </>
+                  ) : (
+                    <>
+                      <NavItem
+                        to="/dashboard/user/order-history"
+                        icon={FaAmazonPay}
+                      >
+                        Order History
+                      </NavItem>
+                      <NavItem to="/dashboard/recent-views" icon={FaComments}>
+                        Recent Views
                       </NavItem>
                     </>
                   )}
