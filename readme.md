@@ -1,6 +1,6 @@
-# E-coom
+# E-com
 
-Welcome to **E-coom**! This guide will help you set up and run both the server and client sides of the E-coom E-Commerce application locally on your machine.
+Welcome to **E-com**! This guide will help you set up and run both the server and client sides of the E-coom E-Commerce application locally on your machine.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Welcome to **E-coom**! This guide will help you set up and run both the server a
 
 ## Project Overview
 
-**E-coom** is a modern e-commerce platform designed to provide a seamless shopping experience for users, vendors, and administrators. Users can browse products, vendors can manage shops and inventories, and administrators have control over the entire platform. The system is built to be intuitive, responsive, and secure.
+**E-com** is a modern e-commerce platform designed to provide a seamless shopping experience for users, vendors, and administrators. Users can browse products, vendors can manage shops and inventories, and administrators have control over the entire platform. The system is built to be intuitive, responsive, and secure.
 
 ## Live URL
 
