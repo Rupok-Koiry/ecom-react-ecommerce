@@ -10,7 +10,7 @@ export function useVendorShop() {
     data: shop,
     error,
   } = useQuery({
-    queryKey: ["allShops", queryParams],
+    queryKey: ["vendorShop", queryParams],
     queryFn: () => getVendorShop(queryParams),
     retry: false,
   });

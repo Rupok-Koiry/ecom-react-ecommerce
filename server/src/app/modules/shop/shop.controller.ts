@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import {
   createOne,
   deleteOne,
+  getAll,
   getOne,
   updateOne,
 } from '../../utils/handlerFactory';
@@ -33,6 +34,8 @@ export const getShopDetails = getOne(Shop, 'vendor');
 
 // Update a shop
 export const updateShop = updateOne(Shop);
+// Get all shops
+export const getAllShops = getAll(Shop);
 
 // Delete a shop
 export const deleteShop = deleteOne(Shop);

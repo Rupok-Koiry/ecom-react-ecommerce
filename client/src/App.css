@@ -38,3 +38,8 @@
 .swiper-button-prev::after {
   font-size: 28px;
 }
+.newsletter {
+  background-position: bottom;
+  background-image: var(--primary-bg-gradient),
+    url("https://img.freepik.com/free-photo/blue-notes-isolated-grey_114579-28773.jpg?t=st=1735651625~exp=1735655225~hmac=e6a365af27fe18b27d799ddd35337058c2c6ccfaec7d90eb86f152b0362c2724&w=1480");
+}

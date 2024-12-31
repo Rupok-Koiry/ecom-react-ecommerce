@@ -7,11 +7,17 @@ export async function createShop(shopData: any) {
   return response.data.data;
 }
 
-// Get all shops (Admin only)
+// Get vendor shop (Admin only)
 export async function getVendorShop(queryParams?: Record<string, any>) {
   const response = await handleApiRequest(
-    api.get("/shops", { params: queryParams })
+    api.get("/shops/vendor-shop", { params: queryParams })
   );
+  return response.data.data;
+}
+
+// Get all shops
+export async function getAllShops() {
+  const response = await handleApiRequest(api.get("/shops"));
   return response.data.data;
 }
 

@@ -14,6 +14,7 @@ import { useUserOrders } from "../hooks/orders/useUserOrders";
 import { useCreateReview } from "../hooks/reviews/useCreateReview";
 import AddToCartButton from "../components/AddToCartButton";
 import CompareButton from "../components/CompareButton";
+import { FaRegStar } from "react-icons/fa6";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -117,7 +118,7 @@ const ProductDetails = () => {
                   <img
                     src={image}
                     alt={product.name}
-                    className="rounded-lg object-cover shadow-md"
+                    className="rounded-lg object-cover shadow-md w-full"
                   />
                 </div>
               </SwiperSlide>
@@ -127,21 +128,43 @@ const ProductDetails = () => {
 
         {/* Product Details */}
         <div>
-          <h2 className="text-4xl font-bold text-primary-text mb-4 ">
+          <h2 className="text-4xl font-bold text-primary-text mb-4">
             {product.name}
           </h2>
+
+          {/* Price */}
           <div className="flex items-center gap-4 mb-4">
-            <p className="text-4xl font-semibold text-success-color font-playwrite ">
+            <p className="text-4xl font-semibold text-success-color font-playwrite">
               ${product.price}
             </p>
           </div>
-          <p className="text-secondary-text  mb-3">
+
+          {/* Ratings */}
+          <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center">
+              {Array.from({ length: 5 }, (_, index) =>
+                index < Math.round(product.averageRating) ? (
+                  <FaStar key={index} className="text-yellow-500 w-5 h-5" />
+                ) : (
+                  <FaRegStar key={index} className="text-gray-400 w-5 h-5" />
+                )
+              )}
+            </div>
+            <p className="text-secondary-text text-sm">
+              ({product.ratingsCount} ratings)
+            </p>
+          </div>
+
+          {/* Category */}
+          <p className="text-secondary-text mb-3">
             Category:{" "}
             <span className="text-primary-brand font-medium">
               {product.category.name}
             </span>
           </p>
-          <p className="text-secondary-text  mb-3">
+
+          {/* Shop */}
+          <p className="text-secondary-text mb-3">
             Shop:{" "}
             <Link
               to={`/shops/${product.shop._id}`}
@@ -150,10 +173,13 @@ const ProductDetails = () => {
               {product.shop.name}
             </Link>
           </p>
+
+          {/* Description */}
           <p className="text-secondary-text mb-6">{product.description}</p>
+
+          {/* Buttons */}
           <div className="flex gap-3">
             <AddToCartButton product={product} />
-
             <CompareButton product={product} />
           </div>
         </div>

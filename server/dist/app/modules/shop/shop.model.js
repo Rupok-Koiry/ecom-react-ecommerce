@@ -8,6 +8,8 @@ const shopSchema = new mongoose_1.Schema({
     vendor: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
     followers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
     isBlacklisted: { type: Boolean, default: false },
+}, {
+    timestamps: true,
 });
 const Shop = (0, mongoose_1.model)('Shop', shopSchema);
 exports.default = Shop;

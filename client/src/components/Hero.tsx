@@ -13,7 +13,7 @@ const Hero = () => {
         </p>
         <Link
           to="/products"
-          className="px-6 py-2 bg-primary-brand text-white rounded hover:bg-secondary-brand"
+          className="px-6 py-3 bg-primary-brand text-white rounded hover:bg-secondary-brand text-lg transition-all duration-300 ease-in font-medium"
         >
           Shop Now
         </Link>

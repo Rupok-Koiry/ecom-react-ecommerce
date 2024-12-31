@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.blacklistShop = exports.getShopFollowers = exports.getShopProducts = exports.deleteShop = exports.updateShop = exports.getShopDetails = exports.getVendorShop = exports.createShop = void 0;
+exports.blacklistShop = exports.getShopFollowers = exports.getShopProducts = exports.deleteShop = exports.getAllShops = exports.updateShop = exports.getShopDetails = exports.getVendorShop = exports.createShop = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const handlerFactory_1 = require("../../utils/handlerFactory");
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
@@ -48,6 +48,8 @@ exports.getVendorShop = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
 exports.getShopDetails = (0, handlerFactory_1.getOne)(shop_model_1.default, 'vendor');
 // Update a shop
 exports.updateShop = (0, handlerFactory_1.updateOne)(shop_model_1.default);
+// Get all shops
+exports.getAllShops = (0, handlerFactory_1.getAll)(shop_model_1.default);
 // Delete a shop
 exports.deleteShop = (0, handlerFactory_1.deleteOne)(shop_model_1.default);
 // Get all products for a specific shop

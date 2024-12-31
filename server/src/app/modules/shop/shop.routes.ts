@@ -9,13 +9,16 @@ import {
   getShopFollowers,
   blacklistShop,
   getVendorShop,
+  getAllShops,
 } from './shop.controller';
 
 const router = express.Router();
 
 // Shop Routes
 router.post('/', auth('vendor'), createShop);
-router.get('/', auth('vendor'), getVendorShop);
+
+router.get('/', getAllShops);
+router.get('/vendor-shop', auth('vendor'), getVendorShop);
 router.get('/:id', getShopDetails);
 router.patch('/:id', auth('vendor'), updateShop);
 router.delete('/:shopId', auth('vendor'), deleteShop);

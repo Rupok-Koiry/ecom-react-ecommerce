@@ -23,6 +23,7 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IFormInput>({
     resolver: yupResolver(schema),
@@ -31,10 +32,19 @@ const Login: React.FC = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => login(data);
 
+  const handleDemoLogin = (role: "admin" | "user") => {
+    const credentials = {
+      admin: { email: "admin@gmail.com", password: "12345678" },
+      user: { email: "user@gmail.com", password: "12345678" },
+    };
+    setValue("email", credentials[role].email);
+    setValue("password", credentials[role].password);
+  };
+
   return (
     <section className="flex items-center justify-center py-12 px-5">
       <div className="w-full max-w-xl p-6 lg:p-8 bg-primary-white shadow-lg rounded-xl">
-        <h2 className="text-3xl lg:text-4xl font-semibold text-center mb-3 text-primary-text font-playwrite ">
+        <h2 className="text-3xl lg:text-4xl font-semibold text-center mb-3 text-primary-text font-playwrite">
           Login
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -72,7 +82,24 @@ const Login: React.FC = () => {
             Submit
           </Button>
 
-          <div className="flex justify-between items-center text-sm text-secondary-text font-medium">
+          <div className="flex flex-col lg:flex-row gap-4 mt-4">
+            <button
+              type="button"
+              onClick={() => handleDemoLogin("admin")}
+              className="w-full bg-primary-grey hover:bg-secondary-grey text-white font-medium py-2 px-4 rounded-md shadow-md transition-all"
+            >
+              Demo Admin
+            </button>
+            <button
+              type="button"
+              onClick={() => handleDemoLogin("user")}
+              className="w-full bg-secondary-grey hover:bg-primary-grey text-white font-medium py-2 px-4 rounded-md shadow-md transition-all"
+            >
+              Demo User
+            </button>
+          </div>
+
+          <div className="flex justify-between items-center text-sm text-secondary-text font-medium mt-4">
             <a
               href="/forgot-password"
               className="hover:text-primary-brand transition-all duration-300"

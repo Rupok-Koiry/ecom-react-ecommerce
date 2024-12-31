@@ -8,6 +8,7 @@ import ReviewRoutes from '../modules/review/review.routes';
 import TransactionRoutes from '../modules/transaction/transaction.routes';
 import ProductRoutes from '../modules/product/product.routes';
 import CategoryRoutes from '../modules/category/category.routes';
+import NewsletterRoutes from '../modules/newsletter/newsletter.routes';
 
 const router = Router();
 
@@ -48,6 +49,10 @@ const moduleRoutes = [
   {
     path: '/users',
     route: UserRoutes,
+  },
+  {
+    path: '/newsletters',
+    route: NewsletterRoutes,
   },
 ];
 

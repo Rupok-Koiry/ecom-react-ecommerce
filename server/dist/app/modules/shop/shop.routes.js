@@ -9,7 +9,8 @@ const shop_controller_1 = require("./shop.controller");
 const router = express_1.default.Router();
 // Shop Routes
 router.post('/', (0, auth_1.default)('vendor'), shop_controller_1.createShop);
-router.get('/', (0, auth_1.default)('vendor'), shop_controller_1.getVendorShop);
+router.get('/', shop_controller_1.getAllShops);
+router.get('/vendor-shop', (0, auth_1.default)('vendor'), shop_controller_1.getVendorShop);
 router.get('/:id', shop_controller_1.getShopDetails);
 router.patch('/:id', (0, auth_1.default)('vendor'), shop_controller_1.updateShop);
 router.delete('/:shopId', (0, auth_1.default)('vendor'), shop_controller_1.deleteShop);

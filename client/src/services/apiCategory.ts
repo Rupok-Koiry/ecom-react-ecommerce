@@ -2,10 +2,8 @@ import handleApiRequest from "../utils/handleApiRequest";
 import api from "./api";
 
 // Fetch all categories
-export async function getAllCategories(queryParams?: Record<string, any>) {
-  const response = await handleApiRequest(
-    api.get("/categories", { params: queryParams })
-  );
+export async function getAllCategories() {
+  const response = await handleApiRequest(api.get("/categories"));
   return response.data.data;
 }
 

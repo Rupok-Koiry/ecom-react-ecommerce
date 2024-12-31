@@ -31,6 +31,7 @@ exports.getAllProducts = (0, catchAsync_1.default)((req, res, next) => __awaiter
         const totalCounts = yield product_model_1.default.countDocuments(features.query.getFilter());
         // Populate and paginate data
         features.query = features
+            .sort()
             .limitFields()
             .paginate()
             .query.populate('shop category');

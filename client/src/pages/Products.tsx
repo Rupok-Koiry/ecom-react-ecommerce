@@ -7,6 +7,7 @@ import { useState } from "react";
 import AddToCartButton from "../components/AddToCartButton";
 import CompareButton from "../components/CompareButton";
 import { Link } from "react-router-dom";
+import { useAllCategories } from "../hooks/categories/useAllCategories";
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -14,7 +15,12 @@ const Products = () => {
   const category = searchParams.get("category") as string;
   const discountGte = searchParams.get("discount[gt]") as string;
   const [currentPage, setCurrentPage] = useState(0);
-
+  const { categories } = useAllCategories();
+  const [filters, setFilters] = useState({
+    keyword: "",
+    priceRange: [0, 5000],
+    category: "",
+  });
   const handlePageChange = (selectedItem: { selected: number }) => {
     setCurrentPage(selectedItem.selected);
   };
@@ -34,6 +40,24 @@ const Products = () => {
       </h2>
     );
 
+  const newFilteredProducts = products.filter((product: any) => {
+    const matchesKeyword = product.name
+      .toLowerCase()
+      .includes(filters.keyword.toLowerCase());
+    const matchesPrice =
+      product.price >= filters.priceRange[0] &&
+      product.price <= filters.priceRange[1];
+    const matchesCategory =
+      !filters.category || product.category.name === filters.category;
+
+    return matchesKeyword && matchesPrice && matchesCategory;
+  });
+
+  const handleFilterChange = (e: any) => {
+    const { name, value } = e.target;
+    setFilters({ ...filters, [name]: value });
+  };
+
   return (
     <div className="bg-primary-background py-10 lg:py-14 px-5">
       {isLoading ? (
@@ -44,8 +68,56 @@ const Products = () => {
             title="All Products"
             description={`Browse all products in this shop`}
           />
+
+          <div className="mb-6 flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              name="keyword"
+              value={filters.keyword}
+              onChange={handleFilterChange}
+              placeholder="Search by keyword"
+              className="flex-1 p-3 border rounded-md shadow focus:ring focus:ring-primary"
+            />
+
+            <select
+              name="category"
+              value={filters.category}
+              onChange={handleFilterChange}
+              className="flex-1 p-3 border rounded-md shadow focus:ring focus:ring-primary"
+            >
+              <option value="">All Categories</option>
+              {categories?.map((category: any) => (
+                <option key={category.id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex flex-1 flex-col">
+              <label
+                htmlFor="priceRange"
+                className="text-sm text-primary-text font-medium"
+              >
+                Price: ${filters.priceRange[0]} - ${filters.priceRange[1]}
+              </label>
+              <input
+                type="range"
+                name="priceRange"
+                min="0"
+                max="5000"
+                value={filters.priceRange[1]}
+                onChange={(e) =>
+                  setFilters({
+                    ...filters,
+                    priceRange: [0, parseInt(e.target.value, 10)],
+                  })
+                }
+                className="flex-1 p-3"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product: any) => (
+            {newFilteredProducts.map((product: any) => (
               <div
                 key={product._id}
                 className="relative bg-primary-background p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow ease-in duration-300"

@@ -24,6 +24,12 @@ body {
   --error-color: #ff4757;
   --warning-color: #ffa700;
   --info-color: #4a6cf7;
+
+  --primary-bg-gradient: linear-gradient(
+    90deg,
+    rgba(230, 234, 248, 0.6) 0%,
+    rgba(194, 202, 227, 0.6) 100%
+  );
 }
 .dark:root {
   --primary-white: #0f1729;
@@ -41,4 +47,9 @@ body {
   --error-color: #ff6b6b;
   --warning-color: #ffd700;
   --info-color: #6d7bff;
+  --primary-bg-gradient: linear-gradient(
+    90deg,
+    rgba(30, 39, 73, 0.6) 0%,
+    rgba(58, 70, 116, 0.6) 100%
+  );
 }

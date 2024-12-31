@@ -1,8 +1,10 @@
 import Hero from "../components/Hero";
-import Categories from "../components/Home/Categories";
-import FlashSale from "../components/Home/FlashSale";
-import ScrollToTop from "../components/Home/ScrollTop";
+import Categories from "../components/Categories";
+import FlashSale from "../components/FlashSale";
+import ScrollToTop from "../components/ScrollTop";
+import Newsletter from "../components/Newsletter";
 import AvailableProducts from "./AvalibleProducts";
+import RecentlyAdded from "../components/RecentlyAdded";
 
 const Home = () => {
   return (
@@ -11,6 +13,8 @@ const Home = () => {
       <AvailableProducts />
       <Categories />
       <FlashSale />
+      <RecentlyAdded />
+      <Newsletter />
       <ScrollToTop />
     </>
   );

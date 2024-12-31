@@ -1,8 +1,8 @@
 import { Navigation } from "swiper/modules";
-import SectionTitle from "../SectionTitle";
-import Spinner from "../../components/Spinner";
+import SectionTitle from "./SectionTitle";
+import Spinner from "./Spinner";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useAllCategories } from "../../hooks/categories/useAllCategories";
+import { useAllCategories } from "../hooks/categories/useAllCategories";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
