@@ -9,6 +9,7 @@ import TransactionRoutes from '../modules/transaction/transaction.routes';
 import ProductRoutes from '../modules/product/product.routes';
 import CategoryRoutes from '../modules/category/category.routes';
 import NewsletterRoutes from '../modules/newsletter/newsletter.routes';
+import AnalyticsRoutes from '../modules/analytics/analytics.routes';
 
 const router = Router();
 
@@ -53,6 +54,10 @@ const moduleRoutes = [
   {
     path: '/newsletters',
     route: NewsletterRoutes,
+  },
+  {
+    path: '/analytics',
+    route: AnalyticsRoutes,
   },
 ];
 

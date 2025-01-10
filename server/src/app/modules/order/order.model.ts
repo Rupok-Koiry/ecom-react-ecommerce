@@ -18,6 +18,7 @@ const orderSchema = new Schema(
       type: String,
       enum: ['pending', 'success', 'failed'],
       default: 'pending',
+      lowercase: true,
     },
     shop: {
       type: Schema.Types.ObjectId,

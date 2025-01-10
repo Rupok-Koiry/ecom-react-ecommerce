@@ -18,6 +18,7 @@ const orderSchema = new mongoose_1.Schema({
         type: String,
         enum: ['pending', 'success', 'failed'],
         default: 'pending',
+        lowercase: true,
     },
     shop: {
         type: mongoose_1.Schema.Types.ObjectId,

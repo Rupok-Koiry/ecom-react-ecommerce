@@ -14,6 +14,7 @@ const transaction_routes_1 = __importDefault(require("../modules/transaction/tra
 const product_routes_1 = __importDefault(require("../modules/product/product.routes"));
 const category_routes_1 = __importDefault(require("../modules/category/category.routes"));
 const newsletter_routes_1 = __importDefault(require("../modules/newsletter/newsletter.routes"));
+const analytics_routes_1 = __importDefault(require("../modules/analytics/analytics.routes"));
 const router = (0, express_1.Router)();
 // Define the routes for each module
 const moduleRoutes = [
@@ -56,6 +57,10 @@ const moduleRoutes = [
     {
         path: '/newsletters',
         route: newsletter_routes_1.default,
+    },
+    {
+        path: '/analytics',
+        route: analytics_routes_1.default,
     },
 ];
 // Register each module route with the router

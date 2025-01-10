@@ -8,7 +8,7 @@ type ProtectedRouteProps = {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   children,
-  restrictTo = ["user", "admin"],
+  restrictTo = ["user", "admin", "vendor"],
 }) => {
   const { isLoading, userProfile } = useUserProfile();
 

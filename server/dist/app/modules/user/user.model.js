@@ -36,6 +36,8 @@ const userSchema = new mongoose_1.Schema({
     passwordResetExpires: {
         type: Date,
     },
+}, {
+    timestamps: true,
 });
 // Pre-save hook to hash the user's password before saving it to the database
 userSchema.pre('save', function (next) {

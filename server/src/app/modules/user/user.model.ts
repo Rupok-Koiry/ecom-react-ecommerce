@@ -25,26 +25,31 @@ export interface TUser {
 }
 
 // Define the schema for the User model
-const userSchema = new Schema<TUser>({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  address: { type: String },
-  phone: { type: String },
-  profilePic: { type: String },
-  role: { type: String, enum: ['admin', 'vendor', 'user'], default: 'user' },
-  isActive: { type: Boolean, default: true },
-  followedShops: [{ type: Schema.Types.ObjectId, ref: 'Shop' }],
-  passwordChangedAt: {
-    type: Date,
+const userSchema = new Schema<TUser>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    address: { type: String },
+    phone: { type: String },
+    profilePic: { type: String },
+    role: { type: String, enum: ['admin', 'vendor', 'user'], default: 'user' },
+    isActive: { type: Boolean, default: true },
+    followedShops: [{ type: Schema.Types.ObjectId, ref: 'Shop' }],
+    passwordChangedAt: {
+      type: Date,
+    },
+    passwordResetToken: {
+      type: String,
+    },
+    passwordResetExpires: {
+      type: Date,
+    },
   },
-  passwordResetToken: {
-    type: String,
+  {
+    timestamps: true,
   },
-  passwordResetExpires: {
-    type: Date,
-  },
-});
+);
 
 // Pre-save hook to hash the user's password before saving it to the database
 userSchema.pre('save', async function (next) {
